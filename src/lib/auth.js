@@ -16,8 +16,6 @@ const validatePassword = (user, inputPassword) => {
   return user.hash === inputHash
 }
 
-const userToJSON = (user) => {
-  return _.omit(user, ['hash', 'salt'])
-}
+const userToJSON = (user) => _.omit(user, ['hash', 'salt'])
 
 module.exports = { generateSaltAndHash, validatePassword, userToJSON }

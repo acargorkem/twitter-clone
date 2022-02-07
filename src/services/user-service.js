@@ -42,7 +42,7 @@ class UserService extends BaseService {
     const safeUser = userToJSON(user._doc)
 
     res.status(200)
-    res.json({ user: safeUser })
+    return res.json({ user: safeUser })
   }
 }
 
