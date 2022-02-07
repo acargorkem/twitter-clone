@@ -1,20 +1,23 @@
 module.exports = {
   env: {
     commonjs: true,
-    es6: true,
-    node: true
+    es2021: true,
+    node: true,
+    'jest/globals': true,
   },
   extends: [
     'airbnb-base',
     'plugin:node/recommended',
-    'plugin:security/recommended'
+    'plugin:security/recommended',
   ],
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    SharedArrayBuffer: 'readonly',
   },
+  parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 2020
+    ecmaVersion: 12,
+    requireConfigFile: false,
   },
   rules: {
     'node/exports-style': ['error', 'module.exports'],
@@ -25,7 +28,15 @@ module.exports = {
     'node/prefer-global/url-search-params': ['error', 'always'],
     'node/prefer-global/url': ['error', 'always'],
     'node/prefer-promises/dns': 'error',
-    'node/prefer-promises/fs': 'error'
+    'node/prefer-promises/fs': 'error',
+    semi: 'off',
+    'no-underscore-dangle': 'off',
+    'class-methods-use-this': 'off',
+    'jest/no-disabled-tests': 'warn',
+    'jest/no-focused-tests': 'error',
+    'jest/no-identical-title': 'error',
+    'jest/prefer-to-have-length': 'warn',
+    'jest/valid-expect': 'error',
   },
-  plugins: ['prettier']
+  plugins: ['prettier', 'jest'],
 }
