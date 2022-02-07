@@ -27,7 +27,6 @@ const userRegisterRules = () => {
 }
 
 const userLoginRules = () => {
-  let user
   return [
     body('username', 'Username must be at least 2 characters long.')
       .isString()
