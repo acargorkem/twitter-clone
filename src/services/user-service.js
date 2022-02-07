@@ -16,7 +16,7 @@ class UserService extends BaseService {
       salt
     })
 
-    const safeUser = userToJSON(user)
+    const safeUser = userToJSON(user._doc)
 
     res.status(201)
     res.json({ user: safeUser })
