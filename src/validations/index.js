@@ -10,7 +10,7 @@ const validator = (req, res, next) => {
 
   res.status(422)
   return res.json({
-    errors: extractedErrors
+    errors: extractedErrors,
   })
 }
 

@@ -22,7 +22,7 @@ const userRegisterRules = () => {
       }),
     body('password', 'Please enter a password at least 6 characters.')
       .trim()
-      .isLength({ min: 6 })
+      .isLength({ min: 6 }),
   ]
 }
 
@@ -35,7 +35,7 @@ const userLoginRules = () => {
 
     body('password', 'Please enter a password at least 6 characters.')
       .trim()
-      .isLength({ min: 6 })
+      .isLength({ min: 6 }),
   ]
 }
 

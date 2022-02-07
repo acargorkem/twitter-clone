@@ -3,7 +3,7 @@ const router = express.Router()
 const UserService = require('../services/user-service')
 const {
   userRegisterRules,
-  userLoginRules
+  userLoginRules,
 } = require('../validations/user.validation')
 const validator = require('../validations')
 

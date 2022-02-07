@@ -3,7 +3,7 @@ const UserModel = require('../models/user')
 const {
   generateSaltAndHash,
   userToJSON,
-  validatePassword
+  validatePassword,
 } = require('../lib/auth')
 
 class UserService extends BaseService {
@@ -17,7 +17,7 @@ class UserService extends BaseService {
       username,
       email,
       hash,
-      salt
+      salt,
     })
 
     const safeUser = userToJSON(user._doc)

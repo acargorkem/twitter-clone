@@ -4,7 +4,7 @@ const { generateSaltAndHash } = require('../lib/auth')
 
 jest.mock('../lib/auth', () => ({
   generateSaltAndHash: jest.fn(() => ({ hash: 'hash', salt: 'salt' })),
-  userToJSON: jest.fn((x) => x)
+  userToJSON: jest.fn((x) => x),
 }))
 
 jest.mock('../models/user')
@@ -13,13 +13,13 @@ const request = {
   body: {
     username: 'fake_username',
     email: 'fake_email@email.com',
-    password: 'fake_password'
-  }
+    password: 'fake_password',
+  },
 }
 
 const response = {
   status: jest.fn((x) => x),
-  json: jest.fn((x) => x)
+  json: jest.fn((x) => x),
 }
 
 const mockUser = () => {
@@ -28,7 +28,7 @@ const mockUser = () => {
     username: 'fakeusername',
     email: 'fakeemail@email.com',
     hash: 'hash',
-    salt: 'salt'
+    salt: 'salt',
   })
 }
 
@@ -41,6 +41,6 @@ it('Should send a status code of 201 when user created', async () => {
     username: 'fake_username',
     email: 'fake_email@email.com',
     hash: 'hash',
-    salt: 'salt'
+    salt: 'salt',
   })
 })
