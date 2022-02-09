@@ -19,6 +19,18 @@ const UserSchema = new mongoose.Schema(
     followers: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
     hash: { type: String, select: false },
     salt: { type: String, select: false },
+    tweets: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tweet',
+      },
+    ],
+    likedTweets: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tweet',
+      },
+    ],
   },
   { timestamps: true },
 )
