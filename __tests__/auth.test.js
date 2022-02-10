@@ -1,4 +1,4 @@
-const { userToJSON } = require('../lib/auth')
+const { userToJSON } = require('../src/lib/auth')
 
 it('UserToJSON omit hash and salt from user', async () => {
   const safeUser = {

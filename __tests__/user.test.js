@@ -1,13 +1,13 @@
-const UserService = require('../services/user-service')
-const UserModel = require('../models/user')
-const { generateSaltAndHash } = require('../lib/auth')
+const UserService = require('../src/services/user-service')
+const UserModel = require('../src/models/user')
+const { generateSaltAndHash } = require('../src/lib/auth')
 
-jest.mock('../lib/auth', () => ({
+jest.mock('../src/lib/auth', () => ({
   generateSaltAndHash: jest.fn(() => ({ hash: 'hash', salt: 'salt' })),
   userToJSON: jest.fn((x) => x),
 }))
 
-jest.mock('../models/user')
+jest.mock('../src/models/user')
 
 const request = {
   body: {
@@ -23,7 +23,7 @@ const response = {
 }
 
 const mockUser = () => {
-  return UserModel.create.mockResolvedValueOnce({
+  UserModel.create.mockResolvedValueOnce({
     id: '1',
     username: 'fakeusername',
     email: 'fakeemail@email.com',
