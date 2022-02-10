@@ -1,6 +1,6 @@
 const express = require('express')
 const passport = require('passport')
-const UserService = require('../services/user-service')
+const { register } = require('../controllers/userController')
 const {
   userRegisterRules,
   userLoginRules,
@@ -9,7 +9,7 @@ const validator = require('../validations')
 
 const router = express.Router()
 
-router.post('/register', userRegisterRules(), validator, UserService.register)
+router.post('/register', userRegisterRules(), validator, register)
 router.post(
   '/login',
   userLoginRules(),

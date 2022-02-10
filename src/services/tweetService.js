@@ -1,4 +1,4 @@
-const BaseService = require('./base-service')
+const BaseService = require('./baseService')
 const TweetModel = require('../models/tweet')
 
 class TweetService extends BaseService {

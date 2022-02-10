@@ -1,4 +1,4 @@
-const UserService = require('../src/services/user-service')
+const { register } = require('../src/controllers/userController')
 const UserModel = require('../src/models/user')
 const { generateSaltAndHash } = require('../src/lib/auth')
 
@@ -34,7 +34,7 @@ const mockUser = () => {
 
 it('Should send a status code of 201 when user created', async () => {
   mockUser()
-  await UserService.register(request, response)
+  await register(request, response)
   expect(response.status).toHaveBeenCalledWith(201)
   expect(generateSaltAndHash).toHaveBeenCalledWith('fake_password')
   expect(UserModel.create).toHaveBeenCalledWith({

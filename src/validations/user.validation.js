@@ -1,5 +1,5 @@
 const { body } = require('express-validator')
-const UserService = require('../services/user-service')
+const UserService = require('../services/userService')
 
 const userRegisterRules = () => [
   body('username', 'Username must be at least 2 characters long.')

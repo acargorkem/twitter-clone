@@ -1,5 +1,5 @@
 const express = require('express')
-const TweetService = require('../services/tweet-service')
+const TweetService = require('../services/tweetService')
 const { tweetValidationRules } = require('../validations/tweet.validation')
 const validator = require('../validations')
 
