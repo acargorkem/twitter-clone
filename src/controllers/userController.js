@@ -1,5 +1,5 @@
-const { generateSaltAndHash, userToJSON } = require('../lib/auth')
 const UserService = require('../services/userService')
+const { generateSaltAndHash, userToJSON } = require('../lib/auth')
 
 const register = async (req, res) => {
   const { username, password, email } = req.body
@@ -18,4 +18,10 @@ const register = async (req, res) => {
   res.json({ user: safeUser })
 }
 
-module.exports = { register }
+const follow = async (req, res) => {
+  const followedUserId = req.body.followed
+  const bothUsers = await UserService.follow(req.user.id, followedUserId)
+  res.status(200).json(bothUsers)
+}
+
+module.exports = { register, follow }
