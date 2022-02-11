@@ -7,8 +7,8 @@ module.exports = class BaseService {
     return this.model.create(item)
   }
 
-  async findAll() {
-    return this.model.find()
+  async findAll(options) {
+    return this.model.find({}, null, options)
   }
 
   async findAllBy(fieldName, value) {
