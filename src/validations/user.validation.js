@@ -11,7 +11,7 @@ const userRegisterRules = () => [
       if (existingUserName) {
         return Promise.reject(new Error('Username already exists.'))
       }
-      return null
+      return true
     }),
   body('email', 'Please enter a valid e-mail')
     .isEmail()
@@ -20,7 +20,7 @@ const userRegisterRules = () => [
       if (existingEmail) {
         return Promise.reject(new Error('E-mail already exists.'))
       }
-      return null
+      return true
     }),
   body('password', 'Please enter a password at least 6 characters.')
     .trim()
