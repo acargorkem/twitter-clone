@@ -8,6 +8,9 @@ const MongoStore = require('connect-mongo')
 const userRouter = require('./routes/user')
 const tweetRouter = require('./routes/tweet')
 
+// Middlewares
+const { checkAuthentication } = require('./middlewares/auth')
+
 const config = require('./lib/config')
 require('./lib/db-connection')
 require('./strategies/local')
@@ -31,14 +34,6 @@ app.use(
 
 app.use(passport.initialize())
 app.use(passport.session())
-
-const checkAuthentication = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    next()
-  } else {
-    res.status(401).json({ error: 'Unauthorized' })
-  }
-}
 
 app.use('/user', userRouter)
 app.use('/tweet', checkAuthentication, tweetRouter)
