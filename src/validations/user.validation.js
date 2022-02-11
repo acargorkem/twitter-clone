@@ -1,4 +1,5 @@
-const { body } = require('express-validator')
+const mongoose = require('mongoose')
+const { body, query } = require('express-validator')
 const UserService = require('../services/userService')
 
 const userRegisterRules = () => [
@@ -36,4 +37,13 @@ const userLoginRules = () => [
     .isLength({ min: 6 }),
 ]
 
-module.exports = { userRegisterRules, userLoginRules }
+const getUserRules = () => [
+  query('id').custom((value) => {
+    if (!mongoose.Types.ObjectId.isValid(value)) {
+      return Promise.reject(new Error('Not valid user id.'))
+    }
+    return true
+  }),
+]
+
+module.exports = { userRegisterRules, userLoginRules, getUserRules }

@@ -24,4 +24,15 @@ const follow = async (req, res) => {
   res.status(200).json(bothUsers)
 }
 
-module.exports = { register, follow }
+const getUser = async (req, res) => {
+  const userId = req.query.id
+  const user = await UserService.findById(userId)
+  if (!user) {
+    res.status(404)
+    return res.json({ error: 'User not found' })
+  }
+  res.status(200)
+  return res.json({ user })
+}
+
+module.exports = { register, follow, getUser }
