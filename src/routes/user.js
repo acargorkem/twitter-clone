@@ -32,6 +32,12 @@ router.post(
   },
 )
 
+router.post('/logout', (req, res) => {
+  req.logOut()
+  res.status(200)
+  return res.json({ message: 'Successfully logged out' })
+})
+
 router.post('/follow', checkAuthentication, followRules(), validator, follow)
 
 router.post(
