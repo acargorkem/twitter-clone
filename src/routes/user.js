@@ -1,10 +1,16 @@
 const express = require('express')
 const passport = require('passport')
-const { register, follow, getUser } = require('../controllers/userController')
+const {
+  register,
+  getUser,
+  follow,
+  unfollow,
+} = require('../controllers/userController')
 const {
   userRegisterRules,
   userLoginRules,
   getUserRules,
+  followRules,
 } = require('../validations/user.validation')
 const validator = require('../validations')
 const { checkAuthentication } = require('../middlewares/auth')
@@ -26,6 +32,14 @@ router.post(
   },
 )
 
-router.post('/follow', checkAuthentication, follow)
+router.post('/follow', checkAuthentication, followRules(), validator, follow)
+
+router.post(
+  '/unfollow',
+  checkAuthentication,
+  followRules(),
+  validator,
+  unfollow,
+)
 
 module.exports = router

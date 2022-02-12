@@ -18,12 +18,6 @@ const register = async (req, res) => {
   res.json({ user: safeUser })
 }
 
-const follow = async (req, res) => {
-  const followedUserId = req.body.followed
-  const bothUsers = await UserService.follow(req.user.id, followedUserId)
-  res.status(200).json(bothUsers)
-}
-
 const getUser = async (req, res) => {
   const userId = req.query.id
   const user = await UserService.findById(userId)
@@ -35,4 +29,31 @@ const getUser = async (req, res) => {
   return res.json({ user })
 }
 
-module.exports = { register, follow, getUser }
+const follow = async (req, res) => {
+  const { followedUserId } = req.body
+  const result = await UserService.follow(req.user.id, followedUserId)
+  if (result.error) {
+    res.status(400)
+    return res.json(result)
+  }
+  res.status(200)
+  return res.json(result)
+}
+
+const unfollow = async (req, res) => {
+  const { followedUserId } = req.body
+  const result = await UserService.unfollow(req.user.id, followedUserId)
+  if (result.error) {
+    res.status(400)
+    return res.json(result)
+  }
+  res.status(200)
+  return res.json(result)
+}
+
+module.exports = {
+  register,
+  getUser,
+  follow,
+  unfollow,
+}

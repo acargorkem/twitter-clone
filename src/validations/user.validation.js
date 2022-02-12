@@ -46,4 +46,18 @@ const getUserRules = () => [
   }),
 ]
 
-module.exports = { userRegisterRules, userLoginRules, getUserRules }
+const followRules = () => [
+  body('followedUserId').custom((value) => {
+    if (!mongoose.Types.ObjectId.isValid(value)) {
+      return Promise.reject(new Error('Not valid user id.'))
+    }
+    return true
+  }),
+]
+
+module.exports = {
+  userRegisterRules,
+  userLoginRules,
+  getUserRules,
+  followRules,
+}
