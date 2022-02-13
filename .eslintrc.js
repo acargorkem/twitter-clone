@@ -30,6 +30,7 @@ module.exports = {
     'node/prefer-promises/dns': 'error',
     'node/prefer-promises/fs': 'error',
     semi: 'off',
+    quotes: [2, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     'no-underscore-dangle': 'off',
     'class-methods-use-this': 'off',
     'jest/no-disabled-tests': 'warn',
