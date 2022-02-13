@@ -31,6 +31,11 @@ const getUser = async (req, res) => {
 
 const follow = async (req, res) => {
   const { followedUserId } = req.body
+  if (req.user.id === followedUserId) {
+    res.status(422)
+    return res.json({ error: `You can't follow yourself` })
+  }
+
   const result = await UserService.follow(req.user.id, followedUserId)
   if (result.error) {
     res.status(400)
@@ -42,6 +47,7 @@ const follow = async (req, res) => {
 
 const unfollow = async (req, res) => {
   const { followedUserId } = req.body
+
   const result = await UserService.unfollow(req.user.id, followedUserId)
   if (result.error) {
     res.status(400)
