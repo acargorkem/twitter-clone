@@ -18,4 +18,10 @@ const getAllTweets = async (req, res) => {
   return res.json({ result })
 }
 
-module.exports = { postTweet, getAllTweets }
+const getTweetsFromFollowing = async (req, res) => {
+  const result = await TweetService.getTweetsFromFollowing(req.user)
+  res.status(200)
+  return res.json({ result })
+}
+
+module.exports = { postTweet, getAllTweets, getTweetsFromFollowing }
