@@ -7,7 +7,7 @@
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\" ",
     "postinstall": "cd backend && npm install && cd.. & cd frontend && npm install && cd .."
   },
-  "author": "Görkem Acar & Levent Önder",
+  "author": "Görkem Acar & Levent Önder & Alper Emek",
   "license": "MIT",
   "dependencies": {
     "concurrently": "^7.0.0"
