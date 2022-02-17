@@ -12,10 +12,15 @@ const register = async (req, res) => {
     salt,
   })
 
-  const safeUser = userToJSON(user._doc)
-
-  res.status(201)
-  res.json({ user: safeUser })
+  req.login(user, (err) => {
+    if (err) {
+      res.status(422)
+      return res.json({ error: err.message })
+    }
+    const safeUser = userToJSON(user._doc)
+    res.status(201)
+    return res.json({ user: safeUser })
+  })
 }
 
 const getUser = async (req, res) => {
