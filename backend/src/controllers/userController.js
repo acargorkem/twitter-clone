@@ -1,3 +1,4 @@
+const passport = require('passport')
 const UserService = require('../services/userService')
 const { generateSaltAndHash, userToJSON } = require('../lib/auth')
 
@@ -21,6 +22,21 @@ const register = async (req, res) => {
     res.status(201)
     return res.json({ user: safeUser })
   })
+}
+
+const login = async (req, res, next) => {
+  passport.authenticate('local', (error, user) => {
+    if (error) {
+      res.status(422)
+      return res.json({ error: error.message })
+    }
+    return req.login(user, (err) => {
+      if (err) {
+        return next(err)
+      }
+      return res.send({ user })
+    })
+  })(req, res, next)
 }
 
 const getUser = async (req, res) => {
@@ -62,9 +78,17 @@ const unfollow = async (req, res) => {
   return res.json(result)
 }
 
+const logout = async (req, res) => {
+  req.logOut()
+  res.status(200)
+  return res.json({ message: 'Successfully logged out' })
+}
+
 module.exports = {
   register,
+  login,
   getUser,
   follow,
   unfollow,
+  logout,
 }
