@@ -3,6 +3,7 @@ const {
   postTweet,
   getAllTweets,
   getTweetsFromFollowing,
+  getPopularHashtags,
 } = require('../controllers/tweetController')
 const { checkAuthentication } = require('../middlewares/auth')
 const { tweetValidationRules } = require('../validations/tweet.validation')
@@ -15,5 +16,7 @@ router.post('/', tweetValidationRules(), validator, postTweet)
 router.get('/', getAllTweets)
 
 router.get('/following', checkAuthentication, getTweetsFromFollowing)
+
+router.get('/hashtag', getPopularHashtags)
 
 module.exports = router

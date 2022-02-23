@@ -27,4 +27,15 @@ const getTweetsFromFollowing = async (req, res) => {
   return res.json({ result })
 }
 
-module.exports = { postTweet, getAllTweets, getTweetsFromFollowing }
+const getPopularHashtags = async (req, res) => {
+  const result = await TweetService.getPopularHashtags()
+  res.status(200)
+  return res.json({ result })
+}
+
+module.exports = {
+  postTweet,
+  getAllTweets,
+  getTweetsFromFollowing,
+  getPopularHashtags,
+}
