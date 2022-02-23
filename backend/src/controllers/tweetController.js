@@ -1,10 +1,13 @@
 const TweetService = require('../services/tweetService')
+const { findHashtags } = require('../lib/tweetHelpers')
 
 const postTweet = async (req, res) => {
   const tweetBody = req.body.tweet
+  const hashtags = findHashtags(tweetBody)
   const tweet = {
     author: req.user.id,
     tweet: tweetBody,
+    hashtags,
   }
 
   const result = await TweetService.save(tweet)
