@@ -33,9 +33,17 @@ const getPopularHashtags = async (req, res) => {
   return res.json({ result })
 }
 
+const getTweetsContainHashtag = async (req, res) => {
+  const { hashtag } = req.params
+  const result = await TweetService.getTweetsContainHashtag(hashtag)
+  res.status(200)
+  return res.json({ result })
+}
+
 module.exports = {
   postTweet,
   getAllTweets,
   getTweetsFromFollowing,
   getPopularHashtags,
+  getTweetsContainHashtag,
 }

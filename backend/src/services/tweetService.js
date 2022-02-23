@@ -44,6 +44,11 @@ class TweetService extends BaseService {
     ])
     return hashtags
   }
+
+  getTweetsContainHashtag = async (hashtag) => {
+    const tweets = await TweetModel.find({ hashtags: hashtag })
+    return tweets
+  }
 }
 
 module.exports = new TweetService()
