@@ -34,6 +34,13 @@ class TweetService extends BaseService {
       {
         $limit: 5,
       },
+      {
+        $project: {
+          hashtag: '$_id',
+          count: '$hashtags',
+          _id: false,
+        },
+      },
     ])
     return hashtags
   }
