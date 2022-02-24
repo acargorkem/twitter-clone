@@ -6,6 +6,7 @@ import { InputAdornment, TextField } from '@mui/material'
 const Searchbox: React.FC<{ results: { title: string }[] }> = ({ results }) => {
   return (
     <Autocomplete
+      selectOnFocus={false}
       fullWidth={true}
       options={results.map((result) => result.title)}
       renderInput={(params) => (
