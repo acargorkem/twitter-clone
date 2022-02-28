@@ -10,6 +10,45 @@ class TweetService extends BaseService {
     ])
     return tweets
   }
+
+  getPopularHashtags = async () => {
+    const hashtags = await TweetModel.aggregate([
+      {
+        $unwind: {
+          path: '$hashtags',
+        },
+      },
+      {
+        $group: {
+          _id: '$hashtags',
+          hashtags: {
+            $sum: 1,
+          },
+        },
+      },
+      {
+        $sort: {
+          hashtags: -1,
+        },
+      },
+      {
+        $limit: 5,
+      },
+      {
+        $project: {
+          hashtag: '$_id',
+          count: '$hashtags',
+          _id: false,
+        },
+      },
+    ])
+    return hashtags
+  }
+
+  getTweetsContainHashtag = async (hashtag) => {
+    const tweets = await TweetModel.find({ hashtags: hashtag })
+    return tweets
+  }
 }
 
 module.exports = new TweetService()
