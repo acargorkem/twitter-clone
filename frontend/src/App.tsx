@@ -1,5 +1,11 @@
+import Landpage from './components/landpage/Landpage'
+
 function App() {
-  return <h1>Hello World</h1>
+  return (
+    <>
+      <Landpage />
+    </>
+  )
 }
 
 export default App
