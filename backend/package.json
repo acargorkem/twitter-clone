@@ -14,7 +14,9 @@
   "author": "Görkem Acar <acargorkem@outlook.com>",
   "license": "MIT",
   "dependencies": {
+    "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
