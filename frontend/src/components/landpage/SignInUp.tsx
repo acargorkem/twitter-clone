@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import Button from '@mui/material/Button'
 import AppleIcon from '@mui/icons-material/Apple'
-import Separator from './Separator'
+import Separator from '../common/Separator'
 
 const SignInUp: React.FC = () => {
   return (
