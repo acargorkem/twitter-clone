@@ -6,12 +6,14 @@ const {
   follow,
   unfollow,
   logout,
+  checkUserIsExists,
 } = require('../controllers/userController')
 const {
   userRegisterRules,
   userLoginRules,
   getUserRules,
   followRules,
+  checkUserRules,
 } = require('../validations/user.validation')
 const validator = require('../validations')
 const { checkAuthentication } = require('../middlewares/auth')
@@ -35,5 +37,7 @@ router.post(
   validator,
   unfollow,
 )
+
+router.post('/check', checkUserRules(), validator, checkUserIsExists)
 
 module.exports = router

@@ -41,5 +41,12 @@ class UserService extends BaseService {
     await followedUser.save()
     return { followingUser, followedUser }
   }
+
+  checkUserIsExists = async (username) => {
+    const user = await UserModel.findOne({
+      $or: [{ username }, { email: username }],
+    })
+    return user
+  }
 }
 module.exports = new UserService()

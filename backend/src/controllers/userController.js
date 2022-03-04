@@ -84,6 +84,19 @@ const logout = async (req, res) => {
   return res.json({ message: 'Successfully logged out' })
 }
 
+const checkUserIsExists = async (req, res) => {
+  const { username } = req.body
+  const user = await UserService.checkUserIsExists(username)
+
+  if (!user) {
+    res.status(400)
+    return res.json({ result: 'User not found' })
+  }
+
+  res.status(200)
+  return res.json({ result: 'Success' })
+}
+
 module.exports = {
   register,
   login,
@@ -91,4 +104,5 @@ module.exports = {
   follow,
   unfollow,
   logout,
+  checkUserIsExists,
 }
