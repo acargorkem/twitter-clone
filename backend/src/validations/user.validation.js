@@ -31,7 +31,6 @@ const userLoginRules = () => [
   body('username', 'Username must be at least 2 characters long.')
     .isString()
     .isLength({ min: 2 }),
-
   body('password', 'Please enter a password at least 6 characters.')
     .trim()
     .isLength({ min: 6 }),

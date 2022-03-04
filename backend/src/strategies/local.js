@@ -20,7 +20,9 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new Strategy(async (username, password, done) => {
     try {
-      const user = await UserModel.findOne({ username }).select('+hash +salt')
+      const user = await UserModel.findOne({
+        $or: [{ username }, { email: username }],
+      }).select('+hash +salt')
       if (!user) {
         throw new Error('User not found')
       }
