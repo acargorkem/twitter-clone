@@ -1,5 +1,5 @@
 const crypto = require('crypto')
-const _ = require('lodash')
+const { omit } = require('lodash')
 
 const generateSaltAndHash = (password) => {
   const salt = crypto.randomBytes(16).toString('hex')
@@ -16,6 +16,6 @@ const validatePassword = (user, inputPassword) => {
   return user.hash === inputHash
 }
 
-const userToJSON = (user) => _.omit(user, ['hash', 'salt'])
+const userToJSON = (user) => omit(user, ['hash', 'salt'])
 
 module.exports = { generateSaltAndHash, validatePassword, userToJSON }
