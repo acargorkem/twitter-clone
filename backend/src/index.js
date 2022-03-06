@@ -51,6 +51,4 @@ app.use(passport.session())
 app.use('/user', userRouter)
 app.use('/tweet', checkAuthentication, tweetRouter)
 
-app.listen(config.port, () => {
-  console.log(`App started on port ${config.port}`)
-})
+module.exports = app
