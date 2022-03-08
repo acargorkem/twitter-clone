@@ -1,10 +1,13 @@
 const TweetService = require('../services/tweetService')
+const { findHashtags } = require('../lib/tweetHelpers')
 
 const postTweet = async (req, res) => {
   const tweetBody = req.body.tweet
+  const hashtags = findHashtags(tweetBody)
   const tweet = {
     author: req.user.id,
     tweet: tweetBody,
+    hashtags,
   }
 
   const result = await TweetService.save(tweet)
@@ -24,4 +27,23 @@ const getTweetsFromFollowing = async (req, res) => {
   return res.json({ result })
 }
 
-module.exports = { postTweet, getAllTweets, getTweetsFromFollowing }
+const getPopularHashtags = async (req, res) => {
+  const result = await TweetService.getPopularHashtags()
+  res.status(200)
+  return res.json({ result })
+}
+
+const getTweetsContainHashtag = async (req, res) => {
+  const { hashtag } = req.params
+  const result = await TweetService.getTweetsContainHashtag(hashtag)
+  res.status(200)
+  return res.json({ result })
+}
+
+module.exports = {
+  postTweet,
+  getAllTweets,
+  getTweetsFromFollowing,
+  getPopularHashtags,
+  getTweetsContainHashtag,
+}

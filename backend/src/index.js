@@ -3,6 +3,8 @@ const helmet = require('helmet')
 const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const cors = require('cors')
+const compression = require('compression')
 
 // Routes
 const userRouter = require('./routes/user')
@@ -17,6 +19,17 @@ require('./strategies/local')
 
 const app = express()
 app.use(helmet())
+
+const origins = [] // Add domains on production
+
+app.use(helmet())
+app.use(compression())
+app.use(
+  cors({
+    origin: process.env.NODE_ENV === 'production' ? origins : true,
+    credentials: true,
+  }),
+)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -38,6 +51,4 @@ app.use(passport.session())
 app.use('/user', userRouter)
 app.use('/tweet', checkAuthentication, tweetRouter)
 
-app.listen(config.port, () => {
-  console.log(`App started on port ${config.port}`)
-})
+module.exports = app

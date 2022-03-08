@@ -1,5 +1,12 @@
+import Landpage from './components/landpage/Landpage'
+
 function App() {
-  return <div>Hello</div>
+
+  return (
+    <>
+      <Landpage />
+    </>
+  )
 }
 
 export default App
