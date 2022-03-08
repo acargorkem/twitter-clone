@@ -6,13 +6,14 @@ import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
-import Alert from '@mui/material/Alert'
 import SignUpWith from '../common/SignUpWith'
+import styles from '../styles/SignInPopUp.styled'
+import Warning from './Warning'
 
 const SignInPopUp: React.FC = () => {
   const [userInput, setUserInput] = useState<string>()
   const [isSubmit, setisSubmit] = useState<boolean>(false)
-  const [isUserExist, setIsUserExist] = useState<any>(true)
+  const [showWarning, setShowWarning] = useState<any>(true)
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault()
@@ -33,23 +34,9 @@ const SignInPopUp: React.FC = () => {
   }
 
   return (
-    <Box
-      height={'100vh'}
-      width={'100vw'}
-      sx={{ backgroundColor: 'gray', display: 'flex' }}
-    >
-      <Container
-        maxWidth="sm"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          height: '50vh',
-          margin: 'auto',
-          backgroundColor: 'white',
-          borderRadius: '10px 10px 10px 10px',
-        }}
-      >
-        <Box display={'flex'} alignItems="center" height={'60px'}>
+    <Box sx={styles.popUpParent}>
+      <Container maxWidth="sm" sx={styles.container}>
+        <Box sx={styles.upper}>
           <IconButton
             aria-label="delete"
             size="small"
@@ -63,13 +50,8 @@ const SignInPopUp: React.FC = () => {
             sx={{ flex: '1', margin: 'auto' }}
           />
         </Box>
-        <Box flex={'1'} width={'50%'} margin={'auto'}>
-          <Typography
-            variant="h5"
-            component="h5"
-            fontWeight={900}
-            marginTop={'2rem'}
-          >
+        <Box sx={styles.lower}>
+          <Typography variant="h5" fontWeight={900} marginTop={'2rem'}>
             Sign in to Twitter
           </Typography>
           <SignUpWith />
@@ -83,37 +65,19 @@ const SignInPopUp: React.FC = () => {
           <Button
             onClick={handleSubmit}
             variant="contained"
-            sx={{
-              borderRadius: '30px',
-              width: '100%',
-              marginTop: '1rem',
-              textTransform: 'none',
-              backgroundColor: 'black',
-            }}
+            sx={styles.nextButton}
           >
             Next
           </Button>
           <p style={{ marginTop: '4rem', fontWeight: '400' }}>
             Dont have an account?
-            <a href="" style={{ color: 'blue' }}>
+            <a href="" style={styles.signUp}>
               Sign up
             </a>
           </p>
         </Box>
       </Container>
-      <Alert
-        sx={{
-          position: 'absolute',
-          bottom: '28px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: isUserExist ? 'none' : 'flex',
-        }}
-        severity="info"
-        variant="filled"
-      >
-        Sorry, we could not find your account.
-      </Alert>
+      <Warning isUserExist={showWarning} />
     </Box>
   )
 }
