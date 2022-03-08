@@ -14,7 +14,7 @@ function reduxSample(props: any) {
 }
 
 const mapStateToProps = (state: any) => {
-  return { testNew: state.tweet.tweetBody }
+  return { testNew: state.tweet }
 }
 const mapDispatchToProps = { setTest, resetTest }
 
