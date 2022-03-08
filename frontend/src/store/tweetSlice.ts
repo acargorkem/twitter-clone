@@ -1,7 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+interface tweetState {
+  tweet: string | null
+  author: number | null
+  likes: Array<object>
+  replies: Array<object>
+  retweets: Array<object>
+  createdDate: Date | null
+}
+
+const initialState: tweetState = {
   tweet: null,
+  author: null,
+  likes: [],
+  replies: [],
+  retweets: [],
+  createdDate: null,
 }
 
 export const tweetSlicer = createSlice({
