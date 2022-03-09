@@ -31,7 +31,6 @@ const userLoginRules = () => [
   body('username', 'Username must be at least 2 characters long.')
     .isString()
     .isLength({ min: 2 }),
-
   body('password', 'Please enter a password at least 6 characters.')
     .trim()
     .isLength({ min: 6 }),
@@ -55,9 +54,18 @@ const followRules = () => [
   }),
 ]
 
+const checkUserRules = () => [
+  body('username', 'Username or e-mail must be at least 2 characters long.')
+    .exists()
+    .bail()
+    .isString()
+    .isLength({ min: 2 }),
+]
+
 module.exports = {
   userRegisterRules,
   userLoginRules,
   getUserRules,
   followRules,
+  checkUserRules,
 }
