@@ -1,5 +1,5 @@
 const BaseService = require('./baseService')
-const TweetModel = require('../models/tweet')
+const TweetModel = require('../models/tweetModel')
 
 class TweetService extends BaseService {
   model = TweetModel

@@ -14,7 +14,7 @@ const {
   getUserRules,
   followRules,
   checkUserRules,
-} = require('../validations/user.validation')
+} = require('../validations/userValidation')
 const validator = require('../validations')
 const { checkAuthentication } = require('../middlewares/auth')
 

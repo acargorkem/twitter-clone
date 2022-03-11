@@ -7,15 +7,15 @@ const cors = require('cors')
 const compression = require('compression')
 
 // Routes
-const userRouter = require('./routes/user')
-const tweetRouter = require('./routes/tweet')
+const userRouter = require('./routes/userRoute')
+const tweetRouter = require('./routes/tweetRoute')
 
 // Middlewares
 const { checkAuthentication } = require('./middlewares/auth')
 
 const config = require('./lib/config')
 require('./lib/db-connection')
-require('./strategies/local')
+require('./strategies/localStrategy')
 
 const app = express()
 app.use(helmet())

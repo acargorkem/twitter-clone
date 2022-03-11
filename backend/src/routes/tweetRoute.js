@@ -7,7 +7,7 @@ const {
   getTweetsContainHashtag,
 } = require('../controllers/tweetController')
 const { checkAuthentication } = require('../middlewares/auth')
-const { tweetValidationRules } = require('../validations/tweet.validation')
+const { tweetValidationRules } = require('../validations/tweetValidation')
 const validator = require('../validations')
 
 const router = express.Router()

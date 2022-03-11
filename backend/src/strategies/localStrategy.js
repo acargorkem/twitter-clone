@@ -1,6 +1,6 @@
 const passport = require('passport')
 const { Strategy } = require('passport-local')
-const UserModel = require('../models/user')
+const UserModel = require('../models/userModel')
 const { userToJSON, validatePassword } = require('../lib/auth')
 
 passport.serializeUser((user, done) => done(null, user._id))
