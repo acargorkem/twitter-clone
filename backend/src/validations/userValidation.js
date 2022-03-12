@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
 const { body, param } = require('express-validator')
 const UserService = require('../services/userService')
+const { validateMongooseId } = require('./commonValidations')
 
 const userRegisterRules = () => [
   body('username', 'Username must be at least 2 characters long.')
@@ -36,23 +36,9 @@ const userLoginRules = () => [
     .isLength({ min: 6 }),
 ]
 
-const getUserRules = () => [
-  param('userId').custom((value) => {
-    if (!mongoose.Types.ObjectId.isValid(value)) {
-      return Promise.reject(new Error('Not valid user id.'))
-    }
-    return true
-  }),
-]
+const getUserRules = () => [param('id').custom(validateMongooseId)]
 
-const followRules = () => [
-  body('followedUserId').custom((value) => {
-    if (!mongoose.Types.ObjectId.isValid(value)) {
-      return Promise.reject(new Error('Not valid user id.'))
-    }
-    return true
-  }),
-]
+const followRules = () => [body('followedUserId').custom(validateMongooseId)]
 
 const checkUserRules = () => [
   body('username', 'Username or e-mail must be at least 2 characters long.')
