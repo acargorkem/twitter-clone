@@ -1,5 +1,4 @@
 const express = require('express')
-
 const {
   getConversations,
   createConversation,
@@ -8,7 +7,6 @@ const {
 const router = express.Router()
 
 router.get('/', getConversations)
-
 router.post('/', createConversation)
 
 module.exports = router
