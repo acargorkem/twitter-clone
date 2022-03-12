@@ -9,6 +9,8 @@ const compression = require('compression')
 // Routes
 const userRouter = require('./routes/userRoute')
 const tweetRouter = require('./routes/tweetRoute')
+const dmRouter = require('./routes/dmRoute')
+const dmConversationRouter = require('./routes/dmConversationRoute')
 
 // Middlewares
 const { checkAuthentication } = require('./middlewares/auth')
@@ -53,5 +55,7 @@ app.use(passport.session())
 
 app.use('/user', userRouter)
 app.use('/tweet', checkAuthentication, tweetRouter)
+app.use('/dm/conversation', checkAuthentication, dmConversationRouter)
+app.use('/dm/message', checkAuthentication, dmRouter)
 
 module.exports = app
