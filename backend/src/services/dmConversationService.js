@@ -6,7 +6,7 @@ class DmConversationService extends BaseService {
 
   getChatByMembers(members) {
     return DmConversationModel.findOne({
-      members: { $size: members.length, $in: members },
+      members: { $size: members.length, $all: members },
     })
   }
 }
