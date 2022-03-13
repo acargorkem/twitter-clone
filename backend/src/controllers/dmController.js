@@ -1,4 +1,5 @@
 const DmService = require('../services/dmService')
+const socketApi = require('../socketApi')
 
 const sendMessage = async (req, res) => {
   const { content, conversation } = req.body
@@ -10,6 +11,8 @@ const sendMessage = async (req, res) => {
   }
 
   const result = await DmService.save(message)
+
+  socketApi.emitMessageUpdates(conversation)
 
   res.status(200)
   return res.json({ result })
