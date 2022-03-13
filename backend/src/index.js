@@ -22,7 +22,7 @@ require('./strategies/localStrategy')
 const app = express()
 app.use(helmet())
 
-const origins = [] // Add domains on production
+const origins = [] // TODO : Add domains on production
 
 app.use(helmet())
 app.use(compression())
