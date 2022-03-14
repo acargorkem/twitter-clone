@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/SignInPopUp.styled'
+import styles from '../styles/LoginUserNamePopUp.styled'
 import { Box } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
