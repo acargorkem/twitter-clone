@@ -32,9 +32,5 @@ const styles = {
     textTransform: 'none',
     backgroundColor: 'black',
   },
-
-  signUp: {
-    color: 'blue',
-  },
 }
 export default styles

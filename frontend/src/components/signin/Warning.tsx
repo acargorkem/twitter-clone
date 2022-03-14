@@ -1,7 +1,7 @@
 import React from 'react'
 import Alert from '@mui/material/Alert'
 
-const Warning: React.FC<{ isUserExist: boolean }> = ({ isUserExist }) => {
+const Warning: React.FC<{ children: string }> = ({ children }) => {
   return (
     <>
       <Alert
@@ -10,12 +10,12 @@ const Warning: React.FC<{ isUserExist: boolean }> = ({ isUserExist }) => {
           bottom: '28px',
           left: '50%',
           transform: 'translateX(-50%)',
-          display: isUserExist ? 'none' : 'flex',
+          display: 'flex',
         }}
         severity="info"
         variant="filled"
       >
-        Sorry, we could not find your account.
+        {children}
       </Alert>
     </>
   )
