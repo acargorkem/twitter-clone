@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import tweetSlicer from './tweetSlice'
+import userSlicer from './userSlice'
 
 // ...
 
 const store = configureStore({
   reducer: {
     tweet: tweetSlicer,
+    user: userSlicer,
   },
 
   // devTools: process.env.NODE_ENV !== 'production',
