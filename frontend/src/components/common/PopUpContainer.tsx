@@ -7,15 +7,15 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import Container from '@mui/material/Container'
 import { Link } from 'react-router-dom'
 
-const PopUpContainer: React.FC<{ closeButton: string }> = ({
+const PopUpContainer: React.FC<{ onCloseURL: string }> = ({
   children,
-  closeButton,
+  onCloseURL,
 }) => {
   return (
     <Box sx={styles.popUpParent}>
       <Container maxWidth="sm" sx={styles.container}>
         <Box sx={styles.upper}>
-          <Link to={closeButton}>
+          <Link to={onCloseURL}>
             <IconButton aria-label="delete" size="small">
               <CloseIcon fontSize="small" />
             </IconButton>

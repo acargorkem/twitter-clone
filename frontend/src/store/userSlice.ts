@@ -4,16 +4,16 @@ interface userState {
   name: string | null
   isExist: boolean
   isAuth: boolean
-  loading: boolean
-  showError: boolean
+  isLoading: false
+  hasError: false
 }
 
 const initialState: userState = {
   name: null,
   isExist: false,
   isAuth: false,
-  loading: false,
-  showError: false,
+  isLoading: false,
+  hasError: false,
 }
 
 export const userSlicer = createSlice({

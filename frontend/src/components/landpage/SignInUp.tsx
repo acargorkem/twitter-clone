@@ -5,6 +5,7 @@ import Button from '@mui/material/Button'
 import AppleIcon from '@mui/icons-material/Apple'
 import Separator from '../common/Separator'
 import { Link as RouterLink } from 'react-router-dom'
+import SignUpWith from '../common/SignUpWith'
 
 const SignInUp: React.FC = () => {
   return (
@@ -33,32 +34,7 @@ const SignInUp: React.FC = () => {
       >
         Join Twitter today.
       </Typography>
-      <Button
-        variant="outlined"
-        sx={{
-          borderRadius: '30px',
-          width: '70%',
-          marginTop: '2rem',
-          textTransform: 'none',
-        }}
-      >
-        Sign up with Google
-      </Button>
-      <Button
-        variant="outlined"
-        sx={{
-          borderRadius: '30px',
-          width: '70%',
-          marginTop: '.6rem',
-          color: 'black',
-          borderColor: 'black',
-        }}
-        startIcon={<AppleIcon />}
-      >
-        Sign up with Apple
-      </Button>
-
-      <Separator />
+      <SignUpWith />
       <Button
         variant="contained"
         sx={{

@@ -1,10 +1,12 @@
 import React from 'react'
 import { Button } from '@mui/material'
+import { Box } from '@mui/material'
 import Separator from './Separator'
 import AppleIcon from '@mui/icons-material/Apple'
+
 const SignUpWith: React.FC = () => {
   return (
-    <div>
+    <Box maxWidth={'290px'}>
       <Button
         variant="outlined"
         sx={{
@@ -31,7 +33,7 @@ const SignUpWith: React.FC = () => {
       </Button>
 
       <Separator />
-    </div>
+    </Box>
   )
 }
 

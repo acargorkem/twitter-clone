@@ -16,7 +16,7 @@ const SignInPopUp: React.FC = (props: any) => {
   const [userInput, setUserInput] = useState<string>('')
   const navigate = useNavigate()
 
-  async function handleChange(e: any) {
+  async function onNextButtonClick() {
     try {
       await checkUserExist(userInput)
       props.keepUser(userInput)
@@ -28,7 +28,7 @@ const SignInPopUp: React.FC = (props: any) => {
 
   return (
     <>
-      <PopUpContainer closeButton="/">
+      <PopUpContainer onCloseURL="/">
         <Typography variant="h5" fontWeight={900} mt={'2rem'}>
           Sign in to Twitter
         </Typography>
@@ -43,7 +43,7 @@ const SignInPopUp: React.FC = (props: any) => {
         <Button
           variant="contained"
           sx={styles.nextButton}
-          onClick={handleChange}
+          onClick={onNextButtonClick}
         >
           Next
         </Button>
@@ -59,7 +59,7 @@ const SignInPopUp: React.FC = (props: any) => {
 
 const mapStateToProps = (state: any) => {
   return {
-    error: state.user.showError,
+    error: state.user.hasError,
     isExist: state.user.isExist,
     userName: state.user.name,
   }
