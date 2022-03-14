@@ -4,6 +4,7 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import Button from '@mui/material/Button'
 import AppleIcon from '@mui/icons-material/Apple'
 import Separator from '../common/Separator'
+import { Link as RouterLink } from 'react-router-dom'
 
 const SignInUp: React.FC = () => {
   return (
@@ -73,10 +74,12 @@ const SignInUp: React.FC = () => {
         Already have an account?
       </p>
       <Button
+        component={RouterLink}
+        to="/signin"
         variant="outlined"
         sx={{ borderRadius: '30px', width: '70%', marginTop: '.6rem' }}
       >
-        Sign in
+        Sign In
       </Button>
     </Box>
   )
