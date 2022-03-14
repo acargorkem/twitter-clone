@@ -1,5 +1,5 @@
 import axiosClient from '../client'
 
-export async function checkUserExist(body: object) {
-  return await axiosClient.post('/user/check', body)
+export async function checkUserExist(name: string) {
+  return await axiosClient.post('/user/check', { username: name })
 }
