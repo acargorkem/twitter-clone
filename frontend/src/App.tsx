@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Landpage from './components/landpage/Landpage'
-import SignInPopUp from './components/signin/SignInPopUp'
+import LoginFlowContainer from './components/signin/LoginFlowContainer'
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Landpage />} />
-          <Route path="/signin" element={<SignInPopUp />} />
+          <Route path="/signin" element={<LoginFlowContainer />} />
         </Routes>
       </Router>
     </>
