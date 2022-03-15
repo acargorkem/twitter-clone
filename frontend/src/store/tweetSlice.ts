@@ -19,7 +19,7 @@ const initialState: tweetState = {
 }
 
 export const tweetSlicer = createSlice({
-  name: 'tweet',
+  name: 'tweets',
   initialState,
   reducers: {
     setTest: (state, { payload }) => {
