@@ -2,8 +2,6 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import Button from '@mui/material/Button'
-import AppleIcon from '@mui/icons-material/Apple'
-import Separator from '../common/Separator'
 import { Link as RouterLink } from 'react-router-dom'
 import SignUpWith from '../common/SignUpWith'
 
