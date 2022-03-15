@@ -26,7 +26,7 @@ const PopUpContainer: React.FC<{ onCloseURL: string }> = ({
             sx={{ flex: '1', margin: 'auto' }}
           />
         </Box>
-        <Box sx={styles.lower}>{children}</Box>
+        {children}
       </Container>
     </Box>
   )

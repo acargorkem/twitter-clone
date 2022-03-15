@@ -6,7 +6,7 @@ import { checkUserExist } from '../../api/lib/user'
 import Warning from './Warning'
 
 const LoginFlowContainer: React.FC = () => {
-  const [userName, setUsername] = useState<string | null>(null)
+  const [userName, setUsername] = useState<string>('')
   const [hasError, setHasError] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -22,6 +22,7 @@ const LoginFlowContainer: React.FC = () => {
     }
   }
 
+  // TODO: Refactor error feature
   useEffect(() => {
     setTimeout(() => {
       setHasError(false)
@@ -31,8 +32,8 @@ const LoginFlowContainer: React.FC = () => {
   return (
     <>
       <PopUpContainer onCloseURL="/">
-        {userName ? (
-          <LoginPasswordPopUp />
+        {userName !== '' ? (
+          <LoginPasswordPopUp username={userName} />
         ) : (
           <LoginUserNamePopUp
             isLoading={isLoading}
