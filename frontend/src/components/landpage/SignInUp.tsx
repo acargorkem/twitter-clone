@@ -34,29 +34,31 @@ const SignInUp: React.FC = () => {
       >
         Join Twitter today.
       </Typography>
-      <SignUpWith />
-      <Button
-        variant="contained"
-        sx={{
-          borderRadius: '30px',
-          width: '70%',
-          marginTop: '.6rem',
-          textTransform: 'none',
-        }}
-      >
-        Sign up with phone or email
-      </Button>
-      <p style={{ marginTop: '4rem', fontWeight: '900' }}>
-        Already have an account?
-      </p>
-      <Button
-        component={RouterLink}
-        to="/signin"
-        variant="outlined"
-        sx={{ borderRadius: '30px', width: '70%', marginTop: '.6rem' }}
-      >
-        Sign In
-      </Button>
+      <Box maxWidth={'290px'}>
+        <SignUpWith />
+        <Button
+          variant="contained"
+          sx={{
+            borderRadius: '30px',
+            width: '100%',
+            marginTop: '.6rem',
+            textTransform: 'none',
+          }}
+        >
+          Sign up with phone or email
+        </Button>
+        <p style={{ marginTop: '4rem', fontWeight: '900' }}>
+          Already have an account?
+        </p>
+        <Button
+          component={RouterLink}
+          to="/signin"
+          variant="outlined"
+          sx={{ borderRadius: '30px', width: '100%', marginTop: '.6rem' }}
+        >
+          Sign In
+        </Button>
+      </Box>
     </Box>
   )
 }
