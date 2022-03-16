@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box'
-import SignInUp from './SignInUp'
-import Banner from './Banner'
+import SignInUp from '../../components/landpage/SignInUp'
+import Banner from '../../components/landpage/Banner'
 import { useTheme, useMediaQuery } from '@mui/material'
 
 const Landpage: React.FC = () => {

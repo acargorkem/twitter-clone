@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Landpage from './components/landpage/Landpage'
-import LoginFlowContainer from './components/signin/LoginFlowContainer'
+import Landpage from './pages/public/Landpage'
+import LoginFlowContainer from './pages/public/Loginpage'
 
 function App() {
   return (

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import PopUpContainer from '../common/PopUpContainer'
-import LoginUserNamePopUp from './LoginUserNamePopUp'
-import LoginPasswordPopUp from './LoginPasswordPopUp'
+import PopUpContainer from '../../components/common/PopUpContainer'
+import LoginUserNamePopUp from '../../components/login/LoginUserNamePopUp'
+import LoginPasswordPopUp from '../../components/login/LoginPasswordPopUp'
 import { checkUserExist } from '../../api/lib/user'
-import Warning from './Warning'
+import Warning from '../../components/login/Warning'
 
 const LoginFlowContainer: React.FC = () => {
   const [userName, setUsername] = useState<string>('')
