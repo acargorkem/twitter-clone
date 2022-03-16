@@ -5,7 +5,7 @@ import LoginPasswordPopUp from '../../components/login/LoginPasswordPopUp'
 import { checkUserExist } from '../../api/lib/user'
 import Warning from '../../components/login/Warning'
 
-const LoginFlowContainer: React.FC = () => {
+const Loginpage: React.FC = () => {
   const [userName, setUsername] = useState<string>('')
   const [hasError, setHasError] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -46,4 +46,4 @@ const LoginFlowContainer: React.FC = () => {
   )
 }
 
-export default LoginFlowContainer
+export default Loginpage
