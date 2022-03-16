@@ -6,7 +6,7 @@ import AppleIcon from '@mui/icons-material/Apple'
 
 const SignUpWith: React.FC = () => {
   return (
-    <Box maxWidth={'290px'}>
+    <Box>
       <Button
         variant="outlined"
         sx={{
