@@ -20,7 +20,7 @@ const { checkAuthentication } = require('../middlewares/auth')
 
 const router = express.Router()
 
-router.get('/', getUserRules(), validator, getUser)
+router.get('/:userId', getUserRules(), validator, getUser)
 
 router.post('/register', userRegisterRules(), validator, register)
 

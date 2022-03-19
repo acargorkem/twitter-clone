@@ -15,7 +15,7 @@ const register = async (req, res) => {
 
   req.login(user, (err) => {
     if (err) {
-      res.status(422)
+      res.status(400)
       return res.json({ error: err.message })
     }
     const safeUser = userToJSON(user._doc)
@@ -27,7 +27,7 @@ const register = async (req, res) => {
 const login = async (req, res, next) => {
   passport.authenticate('local', (error, user) => {
     if (error) {
-      res.status(422)
+      res.status(400)
       return res.json({ error: error.message })
     }
     return req.login(user, (err) => {
@@ -40,8 +40,9 @@ const login = async (req, res, next) => {
 }
 
 const getUser = async (req, res) => {
-  const userId = req.query.id
-  const user = await UserService.findById(userId)
+  const { userId } = req.params
+
+  const user = await UserService.findOneBy(userId)
   if (!user) {
     res.status(404)
     return res.json({ error: 'User not found' })
@@ -53,7 +54,7 @@ const getUser = async (req, res) => {
 const follow = async (req, res) => {
   const { followedUserId } = req.body
   if (req.user.id === followedUserId) {
-    res.status(422)
+    res.status(400)
     return res.json({ error: `You can't follow yourself` })
   }
 
@@ -90,7 +91,7 @@ const checkUserIsExists = async (req, res) => {
 
   if (!user) {
     res.status(400)
-    return res.json({ result: 'User not found' })
+    return res.json({ error: 'User not found' })
   }
 
   res.status(200)
