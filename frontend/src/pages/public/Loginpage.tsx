@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PopUpContainer from '../../components/common/PopUpContainer'
 import LoginUserNamePopUp from '../../components/login/LoginUserNamePopUp'
 import LoginPasswordPopUp from '../../components/login/LoginPasswordPopUp'
 import { checkUserExist } from '../../api/lib/user'
-import Warning from '../../components/login/Warning'
 
 const Loginpage: React.FC = () => {
   const [userName, setUsername] = useState<string>('')
-  const [hasError, setHasError] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   async function onNextButtonClick(userInput: string) {
@@ -16,18 +14,11 @@ const Loginpage: React.FC = () => {
       await checkUserExist(userInput)
       setUsername(userInput)
     } catch (err) {
-      setHasError(true)
+      return
     } finally {
       setIsLoading(false)
     }
   }
-
-  // TODO: Refactor error feature
-  useEffect(() => {
-    setTimeout(() => {
-      setHasError(false)
-    }, 5000)
-  }, [hasError])
 
   return (
     <>
@@ -41,7 +32,6 @@ const Loginpage: React.FC = () => {
           />
         )}
       </PopUpContainer>
-      {hasError && <Warning>User doesn&apos;t exist!</Warning>}
     </>
   )
 }
