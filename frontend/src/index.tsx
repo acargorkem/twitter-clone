@@ -7,14 +7,16 @@ import { Provider } from 'react-redux'
 import store from './store'
 
 import CssBaseline from '@mui/material/CssBaseline'
+import ErrorHandler from './components/errorhandler/ErrorHandler'
 
 ReactDOM.render(
   <React.StrictMode>
-
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <App />
+        <ErrorHandler>
+          <App />
+        </ErrorHandler>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,

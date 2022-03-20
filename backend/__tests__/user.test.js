@@ -1,5 +1,5 @@
 const { register } = require('../src/controllers/userController')
-const UserModel = require('../src/models/user')
+const UserModel = require('../src/models/userModel')
 const { generateSaltAndHash } = require('../src/lib/auth')
 
 jest.mock('../src/lib/auth', () => ({
@@ -7,7 +7,7 @@ jest.mock('../src/lib/auth', () => ({
   userToJSON: jest.fn((x) => x),
 }))
 
-jest.mock('../src/models/user')
+jest.mock('../src/models/userModel')
 
 const request = {
   body: {
@@ -15,6 +15,7 @@ const request = {
     email: 'fake_email@email.com',
     password: 'fake_password',
   },
+  login: jest.fn((x) => x),
 }
 
 const response = {
@@ -32,10 +33,9 @@ const mockUser = () => {
   })
 }
 
-it('Should send a status code of 201 when user created', async () => {
+it('Should create a new user', async () => {
   mockUser()
   await register(request, response)
-  expect(response.status).toHaveBeenCalledWith(201)
   expect(generateSaltAndHash).toHaveBeenCalledWith('fake_password')
   expect(UserModel.create).toHaveBeenCalledWith({
     username: 'fake_username',

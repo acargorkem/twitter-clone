@@ -5,7 +5,7 @@ const Separator: React.FC = () => {
   return (
     <Box
       display={'flex'}
-      width={'70%'}
+      width={'100%'}
       alignItems={'center'}
       marginTop={'10px'}
     >

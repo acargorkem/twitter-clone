@@ -1,16 +1,15 @@
 const { validationResult } = require('express-validator')
 
 const validator = (req, res, next) => {
-  const errors = validationResult(req)
-  if (errors.isEmpty()) {
+  const result = validationResult(req)
+
+  if (result.isEmpty()) {
     return next()
   }
-  const extractedErrors = []
-  errors.array().map((err) => extractedErrors.push({ [err.param]: err.msg }))
 
   res.status(422)
   return res.json({
-    errors: extractedErrors,
+    error: result.errors[0].msg,
   })
 }
 

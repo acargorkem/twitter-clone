@@ -2,8 +2,8 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import Button from '@mui/material/Button'
-import AppleIcon from '@mui/icons-material/Apple'
-import Separator from './Separator'
+import { Link as RouterLink } from 'react-router-dom'
+import SignUpWith from '../common/SignUpWith'
 
 const SignInUp: React.FC = () => {
   return (
@@ -32,52 +32,31 @@ const SignInUp: React.FC = () => {
       >
         Join Twitter today.
       </Typography>
-      <Button
-        variant="outlined"
-        sx={{
-          borderRadius: '30px',
-          width: '70%',
-          marginTop: '2rem',
-          textTransform: 'none',
-        }}
-      >
-        Sign up with Google
-      </Button>
-      <Button
-        variant="outlined"
-        sx={{
-          borderRadius: '30px',
-          width: '70%',
-          marginTop: '.6rem',
-          color: 'black',
-          borderColor: 'black',
-        }}
-        startIcon={<AppleIcon />}
-      >
-        Sign up with Apple
-      </Button>
-
-      <Separator />
-      <Button
-        variant="contained"
-        sx={{
-          borderRadius: '30px',
-          width: '70%',
-          marginTop: '.6rem',
-          textTransform: 'none',
-        }}
-      >
-        Sign up with phone or email
-      </Button>
-      <p style={{ marginTop: '4rem', fontWeight: '900' }}>
-        Already have an account?
-      </p>
-      <Button
-        variant="outlined"
-        sx={{ borderRadius: '30px', width: '70%', marginTop: '.6rem' }}
-      >
-        Sign in
-      </Button>
+      <Box maxWidth={'290px'}>
+        <SignUpWith />
+        <Button
+          variant="contained"
+          sx={{
+            borderRadius: '30px',
+            width: '100%',
+            marginTop: '.6rem',
+            textTransform: 'none',
+          }}
+        >
+          Sign up with phone or email
+        </Button>
+        <p style={{ marginTop: '4rem', fontWeight: '900' }}>
+          Already have an account?
+        </p>
+        <Button
+          component={RouterLink}
+          to="/signin"
+          variant="outlined"
+          sx={{ borderRadius: '30px', width: '100%', marginTop: '.6rem' }}
+        >
+          Sign In
+        </Button>
+      </Box>
     </Box>
   )
 }
