@@ -12,6 +12,9 @@ import DatePicker from '@mui/lab/DatePicker'
 import styles from '../styles/LoginUserNamePopUp.styled'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import Input from '../common/Input'
+import { registerThunk } from '../../store/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 const SignUp: React.FC = () => {
   const [userName, setUserName] = useState<string>('')
@@ -22,6 +25,8 @@ const SignUp: React.FC = () => {
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false)
   const [isPasswordShown, setIsPasswordShown] = useState<boolean>(false)
   const [date, setDate] = React.useState<Date | null>(null)
+  const dispatch = useDispatch()
+  const isLoading = useSelector((state: RootState) => state.user.isLoading)
 
   const handleClickShowPassword = () => {
     setIsPasswordShown((prevState) => !prevState)
@@ -31,6 +36,10 @@ const SignUp: React.FC = () => {
     event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault()
+  }
+
+  const handleRegister = () => {
+    dispatch(registerThunk({ username: userName, password, email }))
   }
 
   return (
@@ -102,6 +111,8 @@ const SignUp: React.FC = () => {
         />
       </LocalizationProvider>
       <LoadingButton
+        loading={isLoading}
+        onClick={handleRegister}
         disabled={!(isUsernameValid && isPasswordValid && isEmailValid)}
         variant="contained"
         sx={styles.nextButton}
