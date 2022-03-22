@@ -15,6 +15,7 @@ const initialState: userState = {
   isLoading: false,
   hasError: false,
 }
+
 export interface User {
   _id: string
   username: string
@@ -113,13 +114,3 @@ export const userSlicer = createSlice({
 const { actions, reducer } = userSlicer
 export const { clear, logout } = actions
 export default reducer
-
-/*
-
- id: null,
-  isAuth: false,
-  isLoading: false,
-  hasError: false,
-
-
-*/
