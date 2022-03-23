@@ -8,4 +8,5 @@ export default axios.create({
     Accept: 'application/json',
   },
   withCredentials: true,
+  timeout: 1000 * 10,
 })

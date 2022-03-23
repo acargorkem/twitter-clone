@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { body, query } = require('express-validator')
+const { body, param } = require('express-validator')
 const UserService = require('../services/userService')
 
 const userRegisterRules = () => [
@@ -37,7 +37,7 @@ const userLoginRules = () => [
 ]
 
 const getUserRules = () => [
-  query('id').custom((value) => {
+  param('userId').custom((value) => {
     if (!mongoose.Types.ObjectId.isValid(value)) {
       return Promise.reject(new Error('Not valid user id.'))
     }
