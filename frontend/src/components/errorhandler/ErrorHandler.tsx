@@ -27,16 +27,12 @@ const ErrorHandler: React.FC = ({ children }) => {
     )
   }, [])
 
-  useEffect(() => {
-    setTimeout(() => {
-      setHasError(false)
-    }, 4000)
-  }, [hasError])
-
   return (
     <>
       {children}
-      {hasError && <Warning>{errorMessage}</Warning>}
+      <Warning isOpen={hasError} setIsOpen={setHasError}>
+        {errorMessage}
+      </Warning>
     </>
   )
 }
