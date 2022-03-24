@@ -102,7 +102,7 @@ const LoginPasswordPopUp: React.FC<{ username: string }> = ({ username }) => {
           disabled={password === ''}
           variant="contained"
           fullWidth
-          sx={{ mt: 'auto', borderRadius: '30px' }}
+          sx={{ mt: '10rem', borderRadius: '30px' }}
         >
           Log in
         </Button>
