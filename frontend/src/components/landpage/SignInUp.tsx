@@ -35,6 +35,8 @@ const SignInUp: React.FC = () => {
       <Box maxWidth={'290px'}>
         <SignUpWith />
         <Button
+          component={RouterLink}
+          to="/signup"
           variant="contained"
           sx={{
             borderRadius: '30px',

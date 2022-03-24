@@ -8,10 +8,11 @@ const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    height: 'max(50vh, 500px)',
+    height: 'auto',
     margin: 'auto',
     backgroundColor: 'white',
     borderRadius: '10px 10px 10px 10px',
+    paddingBottom: '2rem',
   },
   upper: {
     display: 'flex',

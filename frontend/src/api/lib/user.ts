@@ -7,3 +7,11 @@ export async function checkUserExist(username: string) {
 export async function login(username: string, password: string) {
   return axiosClient.post('/user/login', { username, password })
 }
+
+export async function register(
+  username: string,
+  password: string,
+  email: string,
+) {
+  return axiosClient.post('/user/register', { username, password, email })
+}

@@ -44,7 +44,7 @@ const LoginUserNamePopUp: React.FC<{
       </LoadingButton>
       <Typography variant="body2" mt={'2rem'}>
         Dont have an account?
-        <Link to="/"> Sign up</Link>
+        <Link to="/signup"> Sign up</Link>
       </Typography>
     </Box>
   )
