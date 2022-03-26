@@ -36,7 +36,7 @@ const userLoginRules = () => [
     .isLength({ min: 6 }),
 ]
 
-const getUserRules = () => [param('id').custom(validateMongooseId)]
+const getUserRules = () => [param('userId').custom(validateMongooseId)]
 
 const followRules = () => [body('followedUserId').custom(validateMongooseId)]
 
