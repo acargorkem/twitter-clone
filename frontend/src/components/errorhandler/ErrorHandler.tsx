@@ -1,10 +1,13 @@
-import Warning from '../login/Warning'
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import Warning from '../login/Warning'
 import axiosClient from '../../api/client'
+import { logout } from '../../store/userSlice'
 
 const ErrorHandler: React.FC = ({ children }) => {
   const [hasError, setHasError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const dispatch = useDispatch()
 
   useEffect(() => {
     axiosClient.interceptors.request.use(function (request) {
@@ -16,6 +19,9 @@ const ErrorHandler: React.FC = ({ children }) => {
         return response
       },
       function (error) {
+        if (error.response.status === 401) {
+          dispatch(logout())
+        }
         const errorMessage = error.response
           ? error.response.data.error
           : 'Network Error'
@@ -25,7 +31,7 @@ const ErrorHandler: React.FC = ({ children }) => {
         return Promise.reject(error)
       },
     )
-  }, [])
+  }, [dispatch])
 
   return (
     <>
