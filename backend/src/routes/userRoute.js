@@ -40,4 +40,6 @@ router.post(
 
 router.post('/check', checkUserRules(), validator, checkUserIsExists)
 
+router.get('/auth', checkAuthentication)
+
 module.exports = router
