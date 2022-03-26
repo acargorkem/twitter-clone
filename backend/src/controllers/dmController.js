@@ -19,8 +19,13 @@ const sendMessage = async (req, res) => {
 }
 
 const getMessages = async (req, res) => {
-  const { conversation } = req.params
-  const messages = await DmService.findAllBy('conversation', conversation)
+  const { conversationId } = req.params
+  const messages = await DmService.findAllBy('conversation', conversationId)
+
+  if (messages.length <= 0) {
+    res.status(404)
+    return res.json({ error: 'No messages found.' })
+  }
 
   res.status(200)
   return res.json({ messages })
