@@ -5,6 +5,7 @@ import Loginpage from './pages/public/Loginpage'
 import Homepage from './pages/private/Homepage'
 import PublicRoute from './components/hoc/PublicRoute'
 import Signuppage from './pages/private/Signuppage'
+import Messages from './pages/private/Messages'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
 
           <Route element={<PrivateRoute />}>
             <Route path="/home" element={<Homepage />} />
+            <Route path="/messages" element={<Messages />} />
           </Route>
         </Routes>
       </Router>

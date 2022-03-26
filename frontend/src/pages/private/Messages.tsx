@@ -1,8 +1,8 @@
 import React from 'react'
 import DirectMessageContainer from '../../components/directMessage/DirectMessageContainer'
 
-const Message = () => {
+const Messages: React.FC = () => {
   return <DirectMessageContainer />
 }
 
-export default Message
+export default Messages
