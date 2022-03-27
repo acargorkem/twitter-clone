@@ -9,13 +9,14 @@ import DirectMessages from './DirectMessages'
 import Conversations from './Conversations'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
+import baseConfig from '../../utils/baseConfig'
 
 const user = {
   username: 'username1',
   password: 'password',
 }
 
-interface message {
+interface IMessage {
   sender: string
   content: string
   conversation: string
@@ -31,12 +32,12 @@ interface IConversation {
   updatedAt: string
 }
 
-const URL = 'http://localhost:5000'
+const URL = baseConfig.baseURL
 
 const socket: Socket = io(URL)
 
 const DirectMessageContainer: React.FC = () => {
-  const [messages, setMessages] = useState<Array<message>>([])
+  const [messages, setMessages] = useState<Array<IMessage>>([])
   const [conversationId, setConversationId] = useState<string | null>(null)
   const [conversations, setConversations] = useState<Array<IConversation>>([])
 
