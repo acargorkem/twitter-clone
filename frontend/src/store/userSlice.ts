@@ -83,9 +83,6 @@ export const userSlicer = createSlice({
       Cookies.remove('connect.sid')
       state.isAuth = false
     },
-    setIsAuth: (state, { payload }) => {
-      state.isAuth = payload
-    },
     clear: () => initialState,
   },
   extraReducers: (builder) => {
@@ -119,5 +116,5 @@ export const userSlicer = createSlice({
 })
 
 const { actions, reducer } = userSlicer
-export const { clear, logout, setIsAuth } = actions
+export const { clear, logout } = actions
 export default reducer
