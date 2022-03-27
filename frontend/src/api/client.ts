@@ -1,7 +1,8 @@
 import axios from 'axios'
+import baseConfig from '../utils/baseConfig'
 
 export default axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: baseConfig.baseURL,
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json',

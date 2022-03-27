@@ -9,6 +9,8 @@ const compression = require('compression')
 // Routes
 const userRouter = require('./routes/userRoute')
 const tweetRouter = require('./routes/tweetRoute')
+const dmRouter = require('./routes/dmRoute')
+const dmConversationRouter = require('./routes/dmConversationRoute')
 
 // Middlewares
 const { checkAuthentication } = require('./middlewares/auth')
@@ -20,7 +22,7 @@ require('./strategies/localStrategy')
 const app = express()
 app.use(helmet())
 
-const origins = [] // Add domains on production
+const origins = [] // TODO : Add domains on production
 
 app.use(helmet())
 app.use(compression())
@@ -54,5 +56,7 @@ app.use(passport.session())
 
 app.use('/user', userRouter)
 app.use('/tweet', checkAuthentication, tweetRouter)
+app.use('/dm/conversation', checkAuthentication, dmConversationRouter)
+app.use('/dm/message', checkAuthentication, dmRouter)
 
 module.exports = app

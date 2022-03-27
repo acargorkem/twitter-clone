@@ -6,7 +6,6 @@ const {
   getPopularHashtags,
   getTweetsContainHashtag,
 } = require('../controllers/tweetController')
-const { checkAuthentication } = require('../middlewares/auth')
 const { tweetValidationRules } = require('../validations/tweetValidation')
 const validator = require('../validations')
 
@@ -16,7 +15,7 @@ router.post('/', tweetValidationRules(), validator, postTweet)
 
 router.get('/', getAllTweets)
 
-router.get('/following', checkAuthentication, getTweetsFromFollowing)
+router.get('/following', getTweetsFromFollowing)
 
 router.get('/hashtag/:hashtag', getTweetsContainHashtag)
 
