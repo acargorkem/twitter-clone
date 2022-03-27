@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { AxiosError } from 'axios'
 import { login, register } from '../api/lib/user'
+import Cookies from 'js-cookie'
+
+const hasToken = Cookies.get('connect.sid') ? true : false
 
 interface userState {
   id: string | null
@@ -11,7 +14,7 @@ interface userState {
 
 const initialState: userState = {
   id: null,
-  isAuth: false,
+  isAuth: hasToken,
   isLoading: false,
   hasError: false,
 }
@@ -77,6 +80,7 @@ export const userSlicer = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
+      Cookies.remove('connect.sid')
       state.isAuth = false
     },
     clear: () => initialState,

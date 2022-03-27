@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
   Box,
   FormControl,
@@ -12,7 +12,7 @@ import {
 } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { loginThunk } from '../../store/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
@@ -23,14 +23,6 @@ const LoginPasswordPopUp: React.FC<{ username: string }> = ({ username }) => {
   const [isPasswordShown, setIsPasswordShown] = useState<boolean>(false)
   const dispatch = useDispatch()
   const initialCount = useSelector((state: RootState) => state.user.isLoading)
-  const isUserAuth = useSelector((state: RootState) => state.user.isAuth)
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (isUserAuth) {
-      navigate('/home')
-    }
-  }, [isUserAuth, navigate])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value)

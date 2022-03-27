@@ -38,12 +38,13 @@ app.use(
   session({
     secret: 'secret',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: config.DB_URI,
     }),
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7,
+      httpOnly: false,
     },
   }),
 )
