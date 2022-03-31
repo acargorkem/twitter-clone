@@ -5,7 +5,11 @@ import Loginpage from './pages/public/Loginpage'
 import Homepage from './pages/private/Homepage'
 import PublicRoute from './components/hoc/PublicRoute'
 import Signuppage from './pages/private/Signuppage'
-import Messages from './pages/private/Messages'
+import Messagespage from './pages/private/Messagespage'
+import Explorepage from './pages/private/Explorepage'
+import Notificationpage from './pages/private/Notificationpage'
+import Profilepage from './pages/private/Profilepage'
+import Layout from './components/layout/Layout'
 
 function App() {
   return (
@@ -19,8 +23,13 @@ function App() {
           </Route>
 
           <Route element={<PrivateRoute />}>
-            <Route path="/home" element={<Homepage />} />
-            <Route path="/messages" element={<Messages />} />
+            <Route element={<Layout />}>
+              <Route path="/home" element={<Homepage />} />
+              <Route path="/explore" element={<Explorepage />} />
+              <Route path="/notification" element={<Notificationpage />} />
+              <Route path="/messages" element={<Messagespage />} />
+              <Route path="/profile" element={<Profilepage />} />
+            </Route>
           </Route>
         </Routes>
       </Router>
