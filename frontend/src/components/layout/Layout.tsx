@@ -1,5 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import BottomTabs from '../BottomTabs/BottomTabs'
+import MobileHeader from '../mobileHeader/MobileHeader'
 import Sidebar from '../sidebar/Sidebar'
 import {
   StyledHeader,
@@ -13,12 +15,14 @@ const Layout: React.FC = () => {
     <LayoutContainer>
       <StyledHeader>
         <Sidebar />
+        <MobileHeader />
       </StyledHeader>
       <StyledMain>
         <MainContainer>
           <Outlet />
         </MainContainer>
       </StyledMain>
+      <BottomTabs />
     </LayoutContainer>
   )
 }
