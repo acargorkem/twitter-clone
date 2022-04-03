@@ -15,7 +15,6 @@ export const SidebarWrapper = styled(Box)({
   position: 'fixed',
   top: 0,
   minWidth: '10%',
-
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
