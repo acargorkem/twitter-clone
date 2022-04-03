@@ -15,20 +15,14 @@ const Layout: React.FC = () => {
     <LayoutContainer>
       <StyledHeader>
         <Sidebar />
-<<<<<<< HEAD
         <MobileHeader />
-=======
->>>>>>> bc8e4bf52cd2f43c0ff2b37b4a5bdd20005a46b5
       </StyledHeader>
       <StyledMain>
         <MainContainer>
           <Outlet />
         </MainContainer>
       </StyledMain>
-<<<<<<< HEAD
       <BottomTabs />
-=======
->>>>>>> bc8e4bf52cd2f43c0ff2b37b4a5bdd20005a46b5
     </LayoutContainer>
   )
 }
