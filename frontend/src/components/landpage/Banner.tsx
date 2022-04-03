@@ -17,7 +17,7 @@ const Banner: React.FC = () => {
           position: 'absolute',
           top: '50%',
           left: '50%',
-          color: 'white',
+          color: 'secondary.main',
           transform: 'translate(-50%, -50%)',
         }}
       />

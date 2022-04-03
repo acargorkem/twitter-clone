@@ -3,16 +3,28 @@ import SearchIcon from '@mui/icons-material/Search'
 import Autocomplete from '@mui/material/Autocomplete'
 import { InputAdornment, TextField } from '@mui/material'
 
-const Searchbox: React.FC<{ results: { title: string }[] }> = ({ results }) => {
+interface IResult {
+  title: string
+}
+
+interface searchboxProps {
+  results: IResult[]
+}
+
+const Searchbox: React.FC<searchboxProps> = ({ results }) => {
   return (
     <Autocomplete
       selectOnFocus={false}
       fullWidth={true}
       options={results.map((result) => result.title)}
+      size="small"
       renderInput={(params) => (
         <TextField
           {...params}
-          sx={{ marginTop: '2rem', width: '100%', borderRadius: '50px' }}
+          sx={{
+            width: '100%',
+            borderRadius: '50px',
+          }}
           id="input-with-icon-textfield"
           placeholder="Twitter'da Ara"
           InputProps={{
