@@ -3,6 +3,11 @@ import { Box } from '@mui/material'
 
 export const LayoutContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
+
+  [theme.breakpoints.up('xl')]: {
+    justifyContent: 'center',
+  },
+
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'column',
   },
@@ -10,6 +15,9 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
 
 export const StyledHeader = styled('header')(({ theme }) => ({
   flexBasis: '25%',
+  [theme.breakpoints.up('xl')]: {
+    flexBasis: '35%',
+  },
   display: 'flex',
   justifyContent: 'flex-end',
   [theme.breakpoints.down('sm')]: {
@@ -18,7 +26,6 @@ export const StyledHeader = styled('header')(({ theme }) => ({
 }))
 
 export const StyledMain = styled('main')(({ theme }) => ({
-  flexBasis: '75%',
   flexGrow: 1,
   minHeight: '100vh',
   [theme.breakpoints.down('md')]: {

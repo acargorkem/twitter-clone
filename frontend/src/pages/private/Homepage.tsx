@@ -1,34 +1,13 @@
-// @ts-nocheck
-/* eslint-disable */
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { logout } from '../../store/userSlice'
-import { getAllTweets } from '../../api/lib/tweet'
+import React from 'react'
+import Timeline from '../../components/timeline/Timeline'
+import MainWrapper from '../../components/common/MainWrapper'
 
-const Homepage = (props: any) => {
-  const [tweets, setTweets] = useState<any>([])
-
-  const onClickHandle = () => {
-    props.logout()
-  }
-
-  const onGetTweets = async () => {
-    const result = await getAllTweets()
-    setTweets(result.data.result)
-  }
-
+const Homepage: React.FC = () => {
   return (
-    <div>
-      <div>
-        <button onClick={onClickHandle}> logout </button>
-      </div>
-      <div>
-        <button onClick={onGetTweets}> get tweets </button>
-      </div>
-    </div>
+    <MainWrapper>
+      <Timeline />
+    </MainWrapper>
   )
 }
 
-const mapDispatchToProps = { logout }
-
-export default connect(null, mapDispatchToProps)(Homepage)
+export default Homepage
