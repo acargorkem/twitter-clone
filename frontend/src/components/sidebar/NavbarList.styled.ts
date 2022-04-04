@@ -12,9 +12,9 @@ interface IListItemButton {
 export const StyledTypography = styled(Typography)(({ theme }) => ({
   display: 'block',
   textTransform: 'capitalize',
-  fontWeigh: 400,
+  fontWeight: 400,
   fontSize: '1.3rem',
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('lg')]: {
     display: 'none',
   },
 }))

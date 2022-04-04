@@ -14,12 +14,10 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
 }))
 
 export const StyledHeader = styled('header')(({ theme }) => ({
-  flexBasis: '25%',
-  [theme.breakpoints.up('xl')]: {
-    flexBasis: '35%',
-  },
+  flex: '1 3 0%',
   display: 'flex',
   justifyContent: 'flex-end',
+  minWidth: 100,
   [theme.breakpoints.down('sm')]: {
     justifyContent: 'flex-start',
   },
