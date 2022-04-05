@@ -17,7 +17,7 @@ export const StyledHeader = styled('header')(({ theme }) => ({
   flex: '1 3 0%',
   display: 'flex',
   justifyContent: 'flex-end',
-  minWidth: 100,
+  minWidth: 88,
   [theme.breakpoints.down('sm')]: {
     justifyContent: 'flex-start',
   },

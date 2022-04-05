@@ -22,6 +22,10 @@ export const StyledTypography = styled(Typography)(({ theme }) => ({
 export const StyledListItemButton = styled(ListItemButton)<IListItemButton>(
   ({ theme }) => ({
     marginTop: theme.spacing(3),
+    paddingLeft: 0,
+    [theme.breakpoints.down('lg')]: {
+      padding: 0,
+    },
     '&:hover': {
       borderRadius: 40,
     },
