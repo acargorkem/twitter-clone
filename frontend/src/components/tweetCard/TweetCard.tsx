@@ -11,18 +11,26 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
+import { ITweet } from '../../types/tweet'
 
-const TweetCard: React.FC = () => {
+interface tweetCardProps {
+  tweet: ITweet
+}
+
+const TweetCard: React.FC<tweetCardProps> = ({ tweet }) => {
   return (
     <Container>
       <StyledAvatar>R</StyledAvatar>
       <Card elevation={0}>
         <CardHeader>
           <Typography fontWeight="fontWeightBold" color="text.primary">
-            This impressive paella
+            {tweet.author.username}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            @cook together
+            {tweet.author.username}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {new Date(tweet.createdAt).toDateString()}
           </Typography>
           <IconButton
             aria-label="upload picture"
@@ -33,11 +41,7 @@ const TweetCard: React.FC = () => {
           </IconButton>
         </CardHeader>
         <CardContent sx={{ px: 0, py: 2 }}>
-          <Typography>
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
-          </Typography>
+          <Typography>{tweet.tweet}</Typography>
         </CardContent>
         <CardMedia
           component="img"
@@ -47,18 +51,18 @@ const TweetCard: React.FC = () => {
         />
         <CardActions sx={{ justifyContent: 'space-between' }}>
           <IconButton aria-label="share">
-            <ModeCommentOutlinedIcon />1
+            <ModeCommentOutlinedIcon />
+            {tweet.replies.length}
           </IconButton>
           <IconButton aria-label="share">
             <ShareIcon />
-            35
+            {tweet.retweets.length}
           </IconButton>
           <IconButton aria-label="add to favorites">
-            15
+            {tweet.likes.length}
             <FavoriteBorderOutlinedIcon />
           </IconButton>
           <IconButton aria-label="add to favorites">
-            15
             <FileUploadOutlinedIcon />
           </IconButton>
         </CardActions>
