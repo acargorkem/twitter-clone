@@ -8,7 +8,9 @@ const MainWrapper: React.FC = ({ children }) => {
       <Box
         sx={{
           flexShrink: { md: 0, xs: 1 },
-          border: '2px solid black',
+          borderColor: 'grey.200',
+          borderStyle: 'solid',
+          borderWidth: '0 1px',
           maxWidth: 600,
         }}
       >
