@@ -58,5 +58,6 @@ app.use('/user', userRouter)
 app.use('/tweet', checkAuthentication, tweetRouter)
 app.use('/dm/conversation', checkAuthentication, dmConversationRouter)
 app.use('/dm/message', checkAuthentication, dmRouter)
+app.use('/uploads', express.static('uploads'))
 
 module.exports = app

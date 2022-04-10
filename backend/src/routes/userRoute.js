@@ -17,6 +17,8 @@ const {
 } = require('../validations/userValidation')
 const validator = require('../validations')
 const { checkAuthentication } = require('../middlewares/auth')
+const { upload } = require('../controllers/avatarUploadController')
+const { updateProfile } = require('../controllers/profileController')
 
 const router = express.Router()
 
@@ -39,5 +41,12 @@ router.post(
 )
 
 router.post('/check', checkUserRules(), validator, checkUserIsExists)
+
+router.post(
+  '/profile',
+  checkAuthentication,
+  upload.single('avatar'),
+  updateProfile,
+)
 
 module.exports = router
