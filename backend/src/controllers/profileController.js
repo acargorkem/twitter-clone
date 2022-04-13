@@ -7,7 +7,11 @@ const updateProfile = async (req, res) => {
   const { bio, name } = body
 
   if (!file) {
-    const user = await UserService.findByIdAndUpdate(req.user.id, { bio, name })
+    const user = await UserService.findByIdAndUpdate(req.user.id, {
+      bio,
+      name,
+      avatar: '',
+    })
     res.status(200)
     return res.json({ user })
   }
