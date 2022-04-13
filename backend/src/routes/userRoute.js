@@ -7,6 +7,7 @@ const {
   unfollow,
   logout,
   checkUserIsExists,
+  getAuthUser,
 } = require('../controllers/userController')
 const {
   userRegisterRules,
@@ -22,7 +23,7 @@ const { updateProfile } = require('../controllers/profileController')
 
 const router = express.Router()
 
-router.get('/:userId', getUserRules(), validator, getUser)
+router.get('/status/:userId', getUserRules(), validator, getUser)
 
 router.post('/register', userRegisterRules(), validator, register)
 
@@ -48,5 +49,7 @@ router.post(
   upload.single('avatar'),
   updateProfile,
 )
+
+router.get('/me', checkAuthentication, getAuthUser)
 
 module.exports = router

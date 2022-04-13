@@ -20,11 +20,15 @@ require('./lib/db-connection')
 require('./strategies/localStrategy')
 
 const app = express()
-app.use(helmet())
 
 const origins = [] // TODO : Add domains on production
 
-app.use(helmet())
+app.use(
+  helmet.crossOriginResourcePolicy({
+    policy: 'same-site',
+  }),
+)
+
 app.use(compression())
 app.use(
   cors({

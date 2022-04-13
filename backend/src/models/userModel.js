@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    avatar: { type: String },
+    avatar: { type: String, default: '' },
     bio: { type: String },
     following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
     followers: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
