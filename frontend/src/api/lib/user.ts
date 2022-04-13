@@ -15,3 +15,7 @@ export async function register(
 ) {
   return axiosClient.post('/user/register', { username, password, email })
 }
+
+export async function getUser() {
+  return axiosClient.get('/user/me')
+}
