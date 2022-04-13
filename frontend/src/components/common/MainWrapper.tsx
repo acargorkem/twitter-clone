@@ -11,8 +11,7 @@ const MainWrapper: React.FC = ({ children }) => {
           borderColor: 'grey.200',
           borderStyle: 'solid',
           borderWidth: '0 1px',
-          maxWidth: 600,
-          minWidth: { md: 500, xs: 'unset' },
+          flexBasis: '600px',
         }}
       >
         {children}
