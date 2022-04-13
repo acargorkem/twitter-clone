@@ -32,6 +32,7 @@ export const ProfileContainer = styled(Box)({
   marginBottom: '2rem',
   paddingLeft: 8,
   marginTop: 'auto',
+  width: '100%',
 })
 
 export const StyledLogoContainer = styled(Box)({

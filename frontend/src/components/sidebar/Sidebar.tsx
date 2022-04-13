@@ -12,6 +12,7 @@ import {
 } from './Sidebar.styled'
 import { IconButton } from '@mui/material'
 import NavbarList from './NavbarList'
+import SidebarProfile from '../sidebarProfile/SidebarProfile'
 
 const Sidebar: React.FC = () => {
   return (
@@ -27,7 +28,9 @@ const Sidebar: React.FC = () => {
         <StyledIconButton color="secondary">
           <AutoFixHighOutlinedIcon />
         </StyledIconButton>
-        <ProfileContainer>Profile</ProfileContainer>
+        <ProfileContainer>
+          <SidebarProfile />
+        </ProfileContainer>
       </SidebarWrapper>
     </SidebarContainer>
   )
