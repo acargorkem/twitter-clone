@@ -12,7 +12,7 @@ import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
 import { ITweet } from '../../types/tweet'
-
+import { parseAvatarURL } from '../../utils/helpers'
 interface tweetCardProps {
   tweet: ITweet
 }
@@ -20,11 +20,11 @@ interface tweetCardProps {
 const TweetCard: React.FC<tweetCardProps> = ({ tweet }) => {
   return (
     <Container>
-      <StyledAvatar>R</StyledAvatar>
-      <Card elevation={0}>
+      <StyledAvatar src={parseAvatarURL(tweet.author.avatar)} />
+      <Card elevation={0} sx={{ flex: 1 }}>
         <CardHeader>
           <Typography fontWeight="fontWeightBold" color="text.primary">
-            {tweet.author.username}
+            {tweet.author.name || tweet.author.username}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {tweet.author.username}

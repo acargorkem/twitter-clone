@@ -11,12 +11,16 @@ import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined'
 import GifOutlinedIcon from '@mui/icons-material/GifOutlined'
 import Divider from '@mui/material/Divider'
 import { postTweet } from '../../api/lib/tweet'
+import { useSelector } from 'react-redux'
+import { parseAvatarURL } from '../../utils/helpers'
+import { RootState } from '../../store'
 
 interface Props {
   getTweets: () => void
 }
 
 const AddTweet: React.FC<Props> = ({ getTweets }) => {
+  const authUser = useSelector((state: RootState) => state.user.authUser)
   const [input, setInput] = useState<string>('')
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +40,7 @@ const AddTweet: React.FC<Props> = ({ getTweets }) => {
 
   return (
     <Container>
-      <StyledAvatar>R</StyledAvatar>
+      <StyledAvatar src={parseAvatarURL(authUser.avatar)}></StyledAvatar>
       <StyledBox>
         <TextField
           onChange={handleInput}
@@ -50,6 +54,7 @@ const AddTweet: React.FC<Props> = ({ getTweets }) => {
             disableUnderline: true,
           }}
         />
+
         <Divider sx={{ marginTop: '1rem' }} />
         <ButtonContainer>
           <InsertPhotoOutlinedIcon />
