@@ -8,12 +8,16 @@ const UserSchema = new mongoose.Schema(
       minlength: 2,
       unique: true,
     },
+    name: {
+      type: String,
+      minlength: 2,
+    },
     email: {
       type: String,
       required: true,
       unique: true,
     },
-    avatar: { type: String },
+    avatar: { type: String, default: '' },
     bio: { type: String },
     following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
     followers: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],

@@ -45,7 +45,7 @@ const NavbarList: React.FC = () => {
           selected={`/${name}` === pathname}
           disableTouchRipple
         >
-          <ListItemIcon>
+          <ListItemIcon sx={{ justifyContent: 'center' }}>
             <IconSelector SelectedIcon={icon} />
           </ListItemIcon>
           <StyledTypography>{name}</StyledTypography>

@@ -23,8 +23,10 @@ module.exports = class BaseService {
     return this.model.findOne({ [fieldName]: value })
   }
 
-  async findByIdAndUpdate(itemId, fieldName, value) {
-    return this.model.findByIdAndUpdate(itemId, { [fieldName]: value })
+  async findByIdAndUpdate(itemId, options) {
+    return this.model.findByIdAndUpdate(itemId, options, {
+      new: true,
+    })
   }
 
   async del(itemId) {

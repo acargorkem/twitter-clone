@@ -7,6 +7,7 @@ const {
   unfollow,
   logout,
   checkUserIsExists,
+  getAuthUser,
 } = require('../controllers/userController')
 const {
   userRegisterRules,
@@ -17,10 +18,12 @@ const {
 } = require('../validations/userValidation')
 const validator = require('../validations')
 const { checkAuthentication } = require('../middlewares/auth')
+const { upload } = require('../controllers/avatarUploadController')
+const { updateProfile } = require('../controllers/profileController')
 
 const router = express.Router()
 
-router.get('/:userId', getUserRules(), validator, getUser)
+router.get('/status/:userId', getUserRules(), validator, getUser)
 
 router.post('/register', userRegisterRules(), validator, register)
 
@@ -39,5 +42,14 @@ router.post(
 )
 
 router.post('/check', checkUserRules(), validator, checkUserIsExists)
+
+router.post(
+  '/profile',
+  checkAuthentication,
+  upload.single('avatar'),
+  updateProfile,
+)
+
+router.get('/me', checkAuthentication, getAuthUser)
 
 module.exports = router

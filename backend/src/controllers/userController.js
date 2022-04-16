@@ -98,6 +98,12 @@ const checkUserIsExists = async (req, res) => {
   return res.json({ result: 'Success' })
 }
 
+const getAuthUser = async (req, res) => {
+  res.status(200)
+  const { user } = req
+  return res.json({ user })
+}
+
 module.exports = {
   register,
   login,
@@ -106,4 +112,5 @@ module.exports = {
   unfollow,
   logout,
   checkUserIsExists,
+  getAuthUser,
 }
