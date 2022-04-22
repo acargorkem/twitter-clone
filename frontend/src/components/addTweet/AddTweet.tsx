@@ -5,20 +5,16 @@ import {
   StyledBox,
   StyledTweetButton,
   ButtonContainer,
-  Input,
 } from './AddTweet.styled'
 import { TextField } from '@mui/material'
-import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined'
-import GifOutlinedIcon from '@mui/icons-material/GifOutlined'
 import Divider from '@mui/material/Divider'
 import { postTweet } from '../../api/lib/tweet'
 import { useSelector } from 'react-redux'
-import { parseAvatarURL } from '../../utils/helpers'
+import { parseMediaURL } from '../../utils/helpers'
 import { RootState } from '../../store'
-import IconButton from '@mui/material/IconButton'
-import Box from '@mui/material/Box'
-import ImageList from '@mui/material/ImageList'
-import ImageListItem from '@mui/material/ImageListItem'
+import UploadImage from './UploadImage'
+import ImageList from './ImageList'
+import ImagePreviewer from '../common/ImagePreviewer'
 
 interface Props {
   getTweets: () => void
@@ -29,24 +25,25 @@ const AddTweet: React.FC<Props> = ({ getTweets }) => {
   const [images, setImages] = useState<Blob[]>([])
   const [input, setInput] = useState<string>('')
 
+  const removeImage = (index: number) => {
+    setImages((prevState) => {
+      const newImages = [...prevState]
+      newImages.splice(index, 1)
+      return newImages
+    })
+  }
+
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
   }
 
-  const onFileChange = (e: any) => {
-    if (images.length + e.target.files.length > 4) {
-      return null // TODO: @leo :) MUI SNACKBAR
-    }
-
-    setImages((prevState) => [...prevState, ...e.target.files])
-  }
-
   async function sendTweet() {
     try {
-      const result = await postTweet(input)
+      const result = await postTweet(input, images)
       if (!result) return
       getTweets()
       setInput('')
+      setImages([])
     } catch (err) {
       return err
     }
@@ -54,7 +51,7 @@ const AddTweet: React.FC<Props> = ({ getTweets }) => {
 
   return (
     <Container>
-      <StyledAvatar src={parseAvatarURL(authUser.avatar)}></StyledAvatar>
+      <StyledAvatar src={parseMediaURL(authUser.avatar)}></StyledAvatar>
       <StyledBox>
         <TextField
           onChange={handleInput}
@@ -69,47 +66,20 @@ const AddTweet: React.FC<Props> = ({ getTweets }) => {
           }}
         />
 
-        <Box sx={{ width: 500 }}>
-          {images.length > 0 && (
-            <ImageList variant="masonry" cols={2} gap={8}>
-              {images.map((image, index) => {
-                return (
-                  <ImageListItem key={index}>
-                    <img
-                      src={URL.createObjectURL(image)}
-                      alt="Paris"
-                      width="90%"
-                      height="auto"
-                    />
-                  </ImageListItem>
-                )
-              })}
-            </ImageList>
-          )}
-        </Box>
+        {images.length > 1 && (
+          <ImageList images={images} removeImage={removeImage} />
+        )}
+
+        {images.length === 1 && (
+          <ImagePreviewer
+            image={images[0]}
+            removeImage={() => removeImage(0)}
+          />
+        )}
 
         <Divider sx={{ marginTop: '1rem' }} />
         <ButtonContainer>
-          <label htmlFor="icon-button-file">
-            <Input
-              accept="image/*"
-              type="file"
-              id="icon-button-file"
-              onChange={onFileChange}
-              multiple={images.length < 3}
-              disabled={images.length >= 4}
-            />
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="span"
-              disabled={images.length >= 4}
-            >
-              <InsertPhotoOutlinedIcon />
-            </IconButton>
-          </label>
-
-          <GifOutlinedIcon />
+          <UploadImage images={images} setImages={setImages} />
           <StyledTweetButton
             onClick={sendTweet}
             disabled={!(input.length > 0 || images.length > 0)}
