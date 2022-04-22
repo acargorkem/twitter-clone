@@ -6,12 +6,11 @@ const {
   getPopularHashtags,
   getTweetsContainHashtag,
 } = require('../controllers/tweetController')
-const { tweetValidationRules } = require('../validations/tweetValidation')
-const validator = require('../validations')
+const { upload } = require('../controllers/tweetMediaContoller')
 
 const router = express.Router()
 
-router.post('/', tweetValidationRules(), validator, postTweet)
+router.post('/', upload.array('medias', 4), postTweet)
 
 router.get('/', getAllTweets)
 
