@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
   Container,
   StyledAvatar,
@@ -15,6 +15,8 @@ import { RootState } from '../../store'
 import UploadImage from './UploadImage'
 import ImageList from './ImageList'
 import ImagePreviewer from '../common/ImagePreviewer'
+import EmojiPicker from '../common/EmojiPicker'
+import { BaseEmoji } from 'emoji-mart'
 
 interface Props {
   getTweets: () => void
@@ -24,6 +26,8 @@ const AddTweet: React.FC<Props> = ({ getTweets }) => {
   const authUser = useSelector((state: RootState) => state.user.authUser)
   const [images, setImages] = useState<Blob[]>([])
   const [input, setInput] = useState<string>('')
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [savedCursor, setSavedCursor] = useState<number | null | undefined>(0)
 
   const removeImage = (index: number) => {
     setImages((prevState) => {
@@ -49,9 +53,19 @@ const AddTweet: React.FC<Props> = ({ getTweets }) => {
     }
   }
 
+  const onEmojiSelect = (emoji: BaseEmoji) => {
+    const cursor = savedCursor ? savedCursor : inputRef?.current?.selectionStart
+
+    if (cursor == null || cursor == undefined) return
+    const text = input.slice(0, cursor) + emoji.native + input.slice(cursor)
+
+    setSavedCursor(cursor + emoji.native.length)
+    setInput(text)
+  }
+
   return (
     <Container>
-      <StyledAvatar src={parseMediaURL(authUser.avatar)}></StyledAvatar>
+      <StyledAvatar src={parseMediaURL(authUser.avatar)} />
       <StyledBox>
         <TextField
           onChange={handleInput}
@@ -61,9 +75,12 @@ const AddTweet: React.FC<Props> = ({ getTweets }) => {
           variant="standard"
           placeholder="What's happening?"
           value={input}
+          inputRef={inputRef}
           InputProps={{
             disableUnderline: true,
           }}
+          onFocus={() => setSavedCursor(null)}
+          onBlur={() => setSavedCursor(inputRef?.current?.selectionStart)}
         />
 
         {images.length > 1 && (
@@ -80,6 +97,7 @@ const AddTweet: React.FC<Props> = ({ getTweets }) => {
         <Divider sx={{ marginTop: '1rem' }} />
         <ButtonContainer>
           <UploadImage images={images} setImages={setImages} />
+          <EmojiPicker onEmojiSelect={onEmojiSelect} />
           <StyledTweetButton
             onClick={sendTweet}
             disabled={!(input.length > 0 || images.length > 0)}
