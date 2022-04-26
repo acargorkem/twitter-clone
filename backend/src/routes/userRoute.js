@@ -12,7 +12,6 @@ const {
 const {
   userRegisterRules,
   userLoginRules,
-  getUserRules,
   followRules,
   checkUserRules,
 } = require('../validations/userValidation')
@@ -23,7 +22,7 @@ const { updateProfile } = require('../controllers/profileController')
 
 const router = express.Router()
 
-router.get('/status/:userId', getUserRules(), validator, getUser)
+router.get('/status/:username', getUser)
 
 router.post('/register', userRegisterRules(), validator, register)
 

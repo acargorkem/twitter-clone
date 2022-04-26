@@ -40,6 +40,7 @@ module.exports = {
     'jest/prefer-to-have-length': 'warn',
     'jest/valid-expect': 'error',
     'linebreak-style': 0,
+    'arrow-body-style': 0,
   },
   plugins: ['prettier', 'jest'],
 }
