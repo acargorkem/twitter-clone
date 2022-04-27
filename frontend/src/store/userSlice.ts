@@ -8,7 +8,7 @@ import {
 import { AxiosError } from 'axios'
 import { login, register } from '../api/lib/user'
 import Cookies from 'js-cookie'
-import { getUser } from '../api/lib/user'
+import { getMe } from '../api/lib/user'
 import { IUser } from '../types/user.d'
 
 const hasToken = Cookies.get('connect.sid') ? true : false
@@ -92,7 +92,7 @@ export const getUserThunk = createAsyncThunk<
   { rejectValue: ValidationErrors }
 >('user/me', async (_, { rejectWithValue }) => {
   try {
-    const result = await getUser()
+    const result = await getMe()
     return result.data.user
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
