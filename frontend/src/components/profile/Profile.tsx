@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { IUser } from '../../types/user'
 import Box from '@mui/material/Box'
@@ -6,21 +6,47 @@ import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
-import Typography from '@mui/material/Typography'
 import { parseMediaURL } from '../../utils/helpers'
 import { Paper } from '@mui/material'
-import Button from '@mui/material/Button'
-import { StyledAvatar, BackButton } from './Profile.styled'
+
+import {
+  StyledAvatar,
+  BackButton,
+  BoldText,
+  LightText,
+  InfoText,
+  StyledSpan,
+  StyledButton,
+} from './Profile.styled'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Stack from '@mui/material/Stack'
-import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlined'
+import EditProfileModal from './EditProfileModal'
+import { useDispatch } from 'react-redux'
+import {
+  postFollowUserThunk,
+  postUnFollowUserThunk,
+} from '../../store/userSlice'
 
 interface ProfileProps {
   user: IUser
+  isMyUser?: boolean
+  isFollowed?: boolean
 }
 
-const Profile: React.FC<ProfileProps> = ({ user }) => {
+const Profile: React.FC<ProfileProps> = ({ user, isMyUser, isFollowed }) => {
   const navigate = useNavigate()
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const dispatch = useDispatch()
+
+  const EditProfileHandleOpen = () => {
+    setIsModalOpen((prevState) => !prevState)
+  }
+
+  const onFollowHandle = () => {
+    isFollowed
+      ? dispatch(postUnFollowUserThunk({ userID: user._id }))
+      : dispatch(postFollowUserThunk({ userID: user._id }))
+  }
 
   return (
     <Box>
@@ -33,10 +59,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
           <ArrowBackIcon />
         </BackButton>
         <Stack spacing={0} ml={2}>
-          <Typography fontWeight={700}>{user.name || user.username}</Typography>
-          <Typography variant="body2" color="text.secondary">
-            {user.tweets.length} Tweets
-          </Typography>
+          <BoldText>{user.name || user.username}</BoldText>
+          <LightText variant="body2"> {user.tweets.length} Tweets</LightText>
         </Stack>
       </Stack>
       <Card>
@@ -55,49 +79,43 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
             />
           }
           action={
-            <Button sx={{ borderRadius: 30 }} variant="outlined">
-              Edit Profile
-            </Button>
+            isMyUser ? (
+              <StyledButton onClick={EditProfileHandleOpen} variant="outlined">
+                Edit Profile
+              </StyledButton>
+            ) : (
+              <StyledButton onClick={onFollowHandle} variant="outlined">
+                {isFollowed ? 'Unfollow' : 'Follow'}
+              </StyledButton>
+            )
           }
         />
 
         <CardContent>
-          <Typography fontWeight={700}>{user.name || user.username}</Typography>
-          <Typography variant="body2" color="text.secondary">
-            @{user.username}
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ mt: 2, textTransform: 'capitalize' }}
-          >
-            <AddLocationAltOutlinedIcon fontSize="small" />
-            {user.bio}
-          </Typography>
-          <Stack direction="row" alignItems="center" mt={2}>
-            <Typography
-              fontWeight={700}
-              sx={{ mr: 0.5 }}
-              color="text.secondary"
-            >
+          <BoldText>{user.name || user.username}</BoldText>
+          <LightText variant="body2"> @{user.username}</LightText>
+
+          <InfoText variant="body2">{user.bio || 'Unknown'}</InfoText>
+          <Stack direction="row" alignItems="center" mt={2} spacing={2}>
+            <BoldText>
               {user.following.length}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Following
-            </Typography>
-            <Typography
-              fontWeight={700}
-              sx={{ ml: 2, mr: 0.5 }}
-              color="text.secondary"
-            >
+              <StyledSpan>Following</StyledSpan>
+            </BoldText>
+
+            <BoldText>
               {user.followers.length}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Followers
-            </Typography>
+              <StyledSpan>Followers</StyledSpan>
+            </BoldText>
           </Stack>
         </CardContent>
       </Card>
+      <EditProfileModal
+        initialName={user.name}
+        initialBio={user.bio}
+        initialAvatar={user.avatar}
+        isModalOpen={isModalOpen}
+        EditProfileHandleOpen={EditProfileHandleOpen}
+      />
     </Box>
   )
 }
