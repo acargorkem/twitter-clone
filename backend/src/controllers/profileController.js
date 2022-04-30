@@ -1,5 +1,4 @@
 const sharp = require('sharp')
-
 const UserService = require('../services/userService')
 
 const updateProfile = async (req, res) => {
@@ -17,7 +16,7 @@ const updateProfile = async (req, res) => {
   }
 
   try {
-    const filePath = `uploads/profile/${req.user.id}.png`
+    const filePath = `uploads/profile/${req.user.username}_${Date.now()}.png`
     await sharp(file.buffer).resize(300, 300).png().toFile(filePath)
 
     const options = {
