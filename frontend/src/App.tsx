@@ -28,7 +28,7 @@ function App() {
               <Route path="/explore" element={<Explorepage />} />
               <Route path="/notification" element={<Notificationpage />} />
               <Route path="/messages" element={<Messagespage />} />
-              <Route path="/profile" element={<Profilepage />} />
+              <Route path=":username" element={<Profilepage />} />
             </Route>
           </Route>
         </Routes>

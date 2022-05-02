@@ -4,17 +4,11 @@ import {
   getConversationsOfUser,
   getMessagesOfConversation,
 } from '../../api/lib/directMessage'
-import client from '../../api/client'
 import DirectMessages from './DirectMessages'
 import Conversations from './Conversations'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import baseConfig from '../../utils/baseConfig'
-
-const user = {
-  username: 'username1',
-  password: 'password',
-}
 
 interface IMessage {
   sender: string
@@ -42,11 +36,6 @@ const DirectMessageContainer: React.FC = () => {
   const [conversations, setConversations] = useState<Array<IConversation>>([])
 
   useEffect(() => {
-    // TODO remove login logic after auth provided on FE
-    const login = async () => {
-      await client.post('/user/login', user)
-    }
-    login()
     if (conversationId) {
       socket.emit('join-conversation', conversationId)
     }

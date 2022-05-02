@@ -1,4 +1,5 @@
 const TweetService = require('../services/tweetService')
+const UserService = require('../services/userService')
 const { findHashtags } = require('../lib/tweetHelpers')
 
 const postTweet = async (req, res) => {
@@ -17,6 +18,7 @@ const postTweet = async (req, res) => {
   }
 
   const result = await TweetService.save(tweet)
+  UserService.findByIdAndUpdate(req.user.id, { $push: { tweets: result.id } })
   res.status(201)
   return res.json({ result })
 }

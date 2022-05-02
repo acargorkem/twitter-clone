@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
 
 const UserSchema = new mongoose.Schema(
   {
@@ -10,7 +11,6 @@ const UserSchema = new mongoose.Schema(
     },
     name: {
       type: String,
-      minlength: 2,
     },
     email: {
       type: String,
@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tweet',
+        autopopulate: {
+          maxDepth: 1,
+          options: { sort: { createdAt: -1 } },
+        },
       },
     ],
     likedTweets: [
@@ -39,6 +43,7 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true },
 )
 
+UserSchema.plugin(autopopulate)
 const UserModel = mongoose.model('User', UserSchema)
 
 module.exports = UserModel

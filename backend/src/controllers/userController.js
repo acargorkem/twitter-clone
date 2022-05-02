@@ -40,9 +40,9 @@ const login = async (req, res, next) => {
 }
 
 const getUser = async (req, res) => {
-  const { userId } = req.params
+  const { username } = req.params
 
-  const user = await UserService.findOneBy(userId)
+  const user = await UserService.findOneBy('username', username)
   if (!user) {
     res.status(404)
     return res.json({ error: 'User not found' })

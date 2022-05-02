@@ -1,4 +1,4 @@
-const { body, param } = require('express-validator')
+const { body } = require('express-validator')
 const UserService = require('../services/userService')
 const { validateMongooseId } = require('./commonValidations')
 
@@ -36,8 +36,6 @@ const userLoginRules = () => [
     .isLength({ min: 6 }),
 ]
 
-const getUserRules = () => [param('userId').custom(validateMongooseId)]
-
 const followRules = () => [body('followedUserId').custom(validateMongooseId)]
 
 const checkUserRules = () => [
@@ -51,7 +49,6 @@ const checkUserRules = () => [
 module.exports = {
   userRegisterRules,
   userLoginRules,
-  getUserRules,
   followRules,
   checkUserRules,
 }

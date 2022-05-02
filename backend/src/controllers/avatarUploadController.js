@@ -1,12 +1,15 @@
 const multer = require('multer')
 
-const allowedExtensions = /(\.png|\.jpg)$/i
+const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/tiff', 'image/png']
 
 const storage = multer.memoryStorage()
 
 const fileFilter = (req, file, cb) => {
-  if (!allowedExtensions.exec(file.originalname)) {
-    return cb(new Error(`Only '.png' and '.jpg' formats allowed!'`), false)
+  if (!ALLOWED_TYPES.includes(file.mimetype)) {
+    return cb(
+      new Error(`Only 'png', 'tiff', and 'jpeg' formats allowed!'`),
+      false,
+    )
   }
   return cb(null, true)
 }

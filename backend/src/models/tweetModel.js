@@ -7,7 +7,7 @@ const TweetSchema = new mongoose.Schema(
     author: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
-      autopopulate: true,
+      autopopulate: { select: 'name username avatar', maxDepth: 1 },
     },
     medias: [{ type: String }],
     likes: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],

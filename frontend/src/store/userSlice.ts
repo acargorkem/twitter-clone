@@ -6,9 +6,9 @@ import {
   isPending,
 } from '@reduxjs/toolkit'
 import { AxiosError } from 'axios'
-import { login, register } from '../api/lib/user'
+import { login, postUnFollowUser, register } from '../api/lib/user'
 import Cookies from 'js-cookie'
-import { getUser } from '../api/lib/user'
+import { getMe, postUpdateUser, postFollowUser } from '../api/lib/user'
 import { IUser } from '../types/user.d'
 
 const hasToken = Cookies.get('connect.sid') ? true : false
@@ -92,8 +92,64 @@ export const getUserThunk = createAsyncThunk<
   { rejectValue: ValidationErrors }
 >('user/me', async (_, { rejectWithValue }) => {
   try {
-    const result = await getUser()
+    const result = await getMe()
     return result.data.user
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    const error: AxiosError<ValidationErrors> = err
+    if (!error.response) {
+      throw err
+    }
+    return rejectWithValue(error.response.data)
+  }
+})
+
+export const postUpdateUserThunk = createAsyncThunk<
+  IUser,
+  { bio: string; name: string; images: Blob[] },
+  { rejectValue: ValidationErrors }
+>('user/profile', async (inputs, { rejectWithValue }) => {
+  try {
+    const { bio, name, images } = inputs
+    const result = await postUpdateUser(bio, name, images)
+    return result.data.user
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    const error: AxiosError<ValidationErrors> = err
+    if (!error.response) {
+      throw err
+    }
+    return rejectWithValue(error.response.data)
+  }
+})
+export const postFollowUserThunk = createAsyncThunk<
+  IUser,
+  { userID: string },
+  { rejectValue: ValidationErrors }
+>('user/follow', async (inputs, { rejectWithValue }) => {
+  try {
+    const { userID } = inputs
+    const result = await postFollowUser(userID)
+    return result.data.followingUser
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    const error: AxiosError<ValidationErrors> = err
+    if (!error.response) {
+      throw err
+    }
+    return rejectWithValue(error.response.data)
+  }
+})
+
+export const postUnFollowUserThunk = createAsyncThunk<
+  IUser,
+  { userID: string },
+  { rejectValue: ValidationErrors }
+>('user/unfollow', async (inputs, { rejectWithValue }) => {
+  try {
+    const { userID } = inputs
+    const result = await postUnFollowUser(userID)
+    return result.data.followingUser
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     const error: AxiosError<ValidationErrors> = err
@@ -121,7 +177,14 @@ export const userSlicer = createSlice({
   extraReducers: (builder) => {
     builder
       .addMatcher(
-        isFulfilled(loginThunk, registerThunk, getUserThunk),
+        isFulfilled(
+          loginThunk,
+          registerThunk,
+          getUserThunk,
+          postUpdateUserThunk,
+          postFollowUserThunk,
+          postUnFollowUserThunk,
+        ),
         (state, { payload }) => {
           state.authUser = payload
           state.isAuth = true
@@ -129,13 +192,27 @@ export const userSlicer = createSlice({
         },
       )
       .addMatcher(
-        isPending(loginThunk, registerThunk, getUserThunk),
+        isPending(
+          loginThunk,
+          registerThunk,
+          getUserThunk,
+          postUpdateUserThunk,
+          postFollowUserThunk,
+          postUnFollowUserThunk,
+        ),
         (state) => {
           state.isLoading = true
         },
       )
       .addMatcher(
-        isRejected(loginThunk, registerThunk, getUserThunk),
+        isRejected(
+          loginThunk,
+          registerThunk,
+          getUserThunk,
+          postUpdateUserThunk,
+          postFollowUserThunk,
+          postUnFollowUserThunk,
+        ),
         (state) => {
           state.isLoading = false
           state.hasError = true
