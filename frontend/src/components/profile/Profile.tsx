@@ -8,7 +8,6 @@ import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
 import { parseMediaURL } from '../../utils/helpers'
 import { Paper } from '@mui/material'
-
 import {
   StyledAvatar,
   BackButton,
@@ -21,6 +20,7 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Stack from '@mui/material/Stack'
 import EditProfileModal from './EditProfileModal'
+import ProfileTabs from './ProfileTabs'
 import { useDispatch } from 'react-redux'
 import {
   postFollowUserThunk,
@@ -36,6 +36,7 @@ interface ProfileProps {
 const Profile: React.FC<ProfileProps> = ({ user, isMyUser, isFollowed }) => {
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
+
   const dispatch = useDispatch()
 
   const EditProfileHandleOpen = () => {
@@ -116,6 +117,7 @@ const Profile: React.FC<ProfileProps> = ({ user, isMyUser, isFollowed }) => {
         isModalOpen={isModalOpen}
         EditProfileHandleOpen={EditProfileHandleOpen}
       />
+      <ProfileTabs user={user} />
     </Box>
   )
 }

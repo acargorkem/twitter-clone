@@ -1,3 +1,5 @@
+import { ITweet } from './tweet'
+
 export interface IUser {
   _id: string
   avatar: string
@@ -7,7 +9,7 @@ export interface IUser {
   email: string
   following: string[]
   followers: string[]
-  tweets: string[]
+  tweets: ITweet[]
   likedTweets: string[]
   createdAt: string
   updatedAt: string
