@@ -6,7 +6,7 @@ import {
 } from './SidebarProfile.styled'
 import ProfileCard from '../profileCard/ProfileCard'
 import { RootState } from '../../store'
-import { parseAvatarURL } from '../../utils/helpers'
+import { parseMediaURL } from '../../utils/helpers'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../store/userSlice'
 
@@ -34,14 +34,11 @@ const SidebarProfile = () => {
         isButton={true}
         name={authUser.name}
         username={authUser.username}
-        avatarSrc={parseAvatarURL(authUser.avatar)}
+        avatarSrc={parseMediaURL(authUser.avatar)}
         onClickHandler={handleClick}
       />
       <StyledMobileAvatarButton onClick={handleClick}>
-        <Avatar
-          aria-label="user avatar"
-          src={parseAvatarURL(authUser.avatar)}
-        />
+        <Avatar aria-label="user avatar" src={parseMediaURL(authUser.avatar)} />
       </StyledMobileAvatarButton>
       <Popover
         PaperProps={{ sx: { width: 250, borderRadius: 3, padding: 1 } }}
@@ -62,7 +59,7 @@ const SidebarProfile = () => {
           isInPopover
           name={authUser.name}
           username={authUser.username}
-          avatarSrc={parseAvatarURL(authUser.avatar)}
+          avatarSrc={parseMediaURL(authUser.avatar)}
         />
         <StyledLogoutButton onClick={handleChangeAvatar}>
           Log out @{authUser.username}

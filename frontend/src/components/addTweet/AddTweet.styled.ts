@@ -42,3 +42,7 @@ export const StyledTweetButton = styled(Button)(({ theme }) => ({
     color: theme.palette.secondary.main,
   },
 }))
+
+export const Input = styled('input')({
+  display: 'none',
+})

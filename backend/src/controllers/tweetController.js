@@ -2,12 +2,18 @@ const TweetService = require('../services/tweetService')
 const { findHashtags } = require('../lib/tweetHelpers')
 
 const postTweet = async (req, res) => {
-  const tweetBody = req.body.tweet
+  const { files, body } = req
+  const tweetBody = body.tweet
+
+  const filenames = files.map(({ filename }) => `uploads/tweet/${filename}`)
+
   const hashtags = findHashtags(tweetBody)
+
   const tweet = {
     author: req.user.id,
-    tweet: tweetBody,
+    context: tweetBody,
     hashtags,
+    medias: filenames,
   }
 
   const result = await TweetService.save(tweet)

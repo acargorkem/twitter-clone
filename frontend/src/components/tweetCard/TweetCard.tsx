@@ -12,7 +12,7 @@ import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
 import { ITweet } from '../../types/tweet'
-import { parseAvatarURL } from '../../utils/helpers'
+import { parseMediaURL } from '../../utils/helpers'
 interface tweetCardProps {
   tweet: ITweet
 }
@@ -20,7 +20,7 @@ interface tweetCardProps {
 const TweetCard: React.FC<tweetCardProps> = ({ tweet }) => {
   return (
     <Container>
-      <StyledAvatar src={parseAvatarURL(tweet.author.avatar)} />
+      <StyledAvatar src={parseMediaURL(tweet.author.avatar)} />
       <Card elevation={0} sx={{ flex: 1 }}>
         <CardHeader>
           <Typography fontWeight="fontWeightBold" color="text.primary">
@@ -41,14 +41,16 @@ const TweetCard: React.FC<tweetCardProps> = ({ tweet }) => {
           </IconButton>
         </CardHeader>
         <CardContent sx={{ px: 0, py: 2 }}>
-          <Typography>{tweet.tweet}</Typography>
+          <Typography>{tweet.context}</Typography>
         </CardContent>
-        <CardMedia
-          component="img"
-          height="194"
-          image="/static/images/cards/paella.jpg"
-          alt="Paella dish"
-        />
+        {tweet.medias.length > 0 && (
+          <CardMedia
+            component="img"
+            height="auto"
+            image={parseMediaURL(tweet.medias[0])}
+            alt="Paella dish"
+          />
+        )}
         <CardActions sx={{ justifyContent: 'space-between' }}>
           <IconButton aria-label="share">
             <ModeCommentOutlinedIcon />

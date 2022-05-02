@@ -14,7 +14,7 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
 }))
 
 export const StyledHeader = styled('header')(({ theme }) => ({
-  flex: '1 3 0%',
+  flex: '1 2 80px',
   display: 'flex',
   justifyContent: 'flex-end',
   minWidth: 88,
@@ -24,7 +24,7 @@ export const StyledHeader = styled('header')(({ theme }) => ({
 }))
 
 export const StyledMain = styled('main')(({ theme }) => ({
-  flexGrow: 1,
+  flex: '1.4 1 680px',
   minHeight: '100vh',
   [theme.breakpoints.down('md')]: {
     justifyContent: 'flex-start',

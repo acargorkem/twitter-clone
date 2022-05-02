@@ -6,7 +6,7 @@ const storage = multer.memoryStorage()
 
 const fileFilter = (req, file, cb) => {
   if (!allowedExtensions.exec(file.originalname)) {
-    return cb(new Error('Only .png and .jpg format allowed!'), false)
+    return cb(new Error(`Only '.png' and '.jpg' formats allowed!'`), false)
   }
   return cb(null, true)
 }
